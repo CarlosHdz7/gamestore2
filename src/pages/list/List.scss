@@ -1,0 +1,39 @@
+@import '../../styles/Settings.scss';
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.button-container__button {
+  background-color: $dark-purple-color;
+  color: $white-color;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.button-container__icon {
+  margin-right: 4px;
+}
+
+.cards-container {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  justify-items: center;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+.no-results {
+  text-align: center;
+  color: $white-color;
+  font-weight: map-get($font-weights, bold);
+}
+
+@media (max-width: $tablet) {
+  .title {
+    font-size: 14px;
+  }
+}

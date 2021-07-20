@@ -1,0 +1,31 @@
+@import '../../styles/Settings.scss';
+
+.pagination-container {
+  margin-top: 10px;
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+.page-item {
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+.page-link {
+  color: $white-color;
+  padding: 10px;
+  background-color: $purple-color;
+  display: inline-block;
+  text-decoration: none;
+  width: 10px;
+}
+
+.page-link-active {
+  background-color: $dark-purple-color;
+}

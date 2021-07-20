@@ -1,0 +1,39 @@
+@import '../../styles/Settings.scss';
+
+.navbar {
+  background-color: $dark-purple-color;
+  box-sizing: border-box;
+  display: flex;
+  font-weight: map-get($font-weights, bold);
+  justify-content: space-between;
+  height: auto;
+  width: 100%;
+  padding: 10px 50px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  box-shadow: $shadow;
+}
+
+.navbar-logo {
+  align-items: center;
+  color: $white-color;
+  display: flex;
+  cursor: pointer;
+}
+
+.navbar-options {
+  display: flex;
+}
+
+.navbar-options__item {
+  padding: 10px;
+  text-decoration: none;
+  color: $white-color;
+}
+
+@media (max-width: $tablet) {
+  .navbar {
+    font-size: 14px;
+  }
+}

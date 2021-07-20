@@ -1,0 +1,23 @@
+//colors
+$white-color: #fff;
+$black-color: #000;
+$primary-color: #4618ac;
+$secondary-color: #f1c40f;
+$green-color: #107c0f;
+$purple-color: #32117d;
+$dark-purple-color: #1c0a45;
+$grey-color: #9288ad;
+
+//look
+$radius: 8px;
+$shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+$font-family: 'Montserrat', 'sans-serif';
+$font-weights: (
+  'regular': 400,
+  'bold': 700,
+);
+
+//break points
+$mobile: 480px;
+$tablet: 700px;
+$desk: 1024px;

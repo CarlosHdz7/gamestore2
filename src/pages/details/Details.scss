@@ -1,0 +1,73 @@
+@import '../../styles/Settings.scss';
+
+.details-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 2fr 10fr;
+  grid-template-rows: auto;
+  height: auto;
+  padding-top: 20px;
+  width: 100%;
+}
+
+.info-container {
+  padding: 10px;
+  padding-top: 0px;
+}
+
+.info-container__title,
+.info-container__description {
+  color: $white-color;
+}
+
+.info-container__title {
+  font-size: 30px;
+  font-weight: map-get($font-weights, bold);
+  margin-top: 0px;
+}
+
+.info-container__description {
+  background-color: $purple-color;
+  padding: 20px;
+  box-shadow: $shadow;
+}
+
+.comments-container__title {
+  color: $white-color;
+  font-weight: map-get($font-weights, bold);
+}
+
+.comments-container__textarea {
+  background-color: $primary-color;
+  border: 2px solid $purple-color;
+  box-sizing: border-box;
+  color: $white-color;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.comments-container-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-button {
+  background-color: $dark-purple-color;
+  border: none;
+  color: $white-color;
+  cursor: pointer;
+  padding: 10px;
+  box-shadow: $shadow;
+}
+
+@media (max-width: $tablet) {
+  .card-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .details-container {
+    grid-template-columns: 1fr;
+  }
+}

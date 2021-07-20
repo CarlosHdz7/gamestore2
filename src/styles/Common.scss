@@ -1,0 +1,23 @@
+@import './Settings.scss';
+
+body {
+  background-color: $primary-color;
+  font-family: $font-family;
+  margin: 0px;
+  padding: 0px;
+  padding-top: 60px;
+}
+
+.container {
+  padding-top: 20px;
+  padding-bottom: 80px;
+  padding-left: 30px;
+  padding-right: 30px;
+  max-width: 900px;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.title {
+  color: $white-color;
+}

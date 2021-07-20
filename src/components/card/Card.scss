@@ -1,0 +1,58 @@
+@import '../../styles/Settings';
+
+.card {
+  width: 180px;
+  margin-bottom: 20px;
+  box-shadow: $shadow;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card-img-container {
+  width: 100%;
+  height: 200px;
+  background-color: $purple-color;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card-info {
+  background-color: $dark-purple-color;
+  padding: 10px;
+}
+
+.card-info__title,
+.card-info__subtitle,
+.card-info__price {
+  color: $white-color;
+  font-weight: 700;
+  font-size: 12px;
+  margin: 0px;
+}
+
+.card-info__title {
+  margin-bottom: 10px;
+}
+
+.card-info__subtitle {
+  color: $grey-color;
+}
+
+.card-info__price {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.card-info__button {
+  background-color: $secondary-color;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-weight: 700;
+}

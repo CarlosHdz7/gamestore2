@@ -1,0 +1,70 @@
+@import '../../styles/Settings.scss';
+
+.home-container {
+  padding-top: 200px;
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  grid-template-rows: auto;
+}
+
+.container-info__title,
+.container-info__subtitle {
+  color: $white-color;
+}
+
+.container-info__title {
+  font-size: 30px;
+  font-weight: map-get($font-weights, bold);
+  margin: 0px;
+}
+
+.button-container-home {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.container-info__button {
+  background-color: $purple-color;
+  border: none;
+  color: $white-color;
+  cursor: pointer;
+  font-weight: map-get($font-weights, bold);
+  font-size: 16px;
+  padding: 10px;
+}
+
+.container-info__button:hover {
+  background-color: $dark-purple-color;
+}
+
+.container-image {
+  padding: 10px;
+}
+
+.container-image__img {
+  width: 100%;
+  pointer-events: none;
+}
+
+@media (max-width: $mobile) {
+  .home-container {
+    padding-top: 30px;
+  }
+
+  .container-info__title,
+  .container-info__subtitle {
+    text-align: center;
+  }
+
+  .button-container-home {
+    justify-content: center;
+  }
+
+  .home-container {
+    grid-template-columns: 1fr;
+  }
+
+  .container-image {
+    grid-row: 1;
+  }
+}

@@ -1,0 +1,19 @@
+@import '../../styles/Settings.scss';
+
+.loader {
+  border: 8px solid $grey-color;
+  border-top: 8px solid $secondary-color;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

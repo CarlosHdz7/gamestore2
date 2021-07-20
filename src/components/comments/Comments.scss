@@ -1,0 +1,17 @@
+@import '../../styles/Settings.scss';
+
+.comment {
+  background-color: $purple-color;
+  box-sizing: border-box;
+  border: 2px solid $purple-color;
+  color: $white-color;
+  height: auto;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: $shadow;
+}
+
+.no-comments {
+  color: $white-color;
+}

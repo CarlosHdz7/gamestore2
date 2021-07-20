@@ -1,0 +1,14 @@
+@import '../../styles/Settings.scss';
+
+footer {
+  align-items: center;
+  background-color: $dark-purple-color;
+  bottom: 0;
+  color: $white-color;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
