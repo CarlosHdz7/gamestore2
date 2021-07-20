@@ -32,6 +32,7 @@ const Card = ({ setPage, game }) => {
 
 Card.propTypes = {
   game: PropTypes.object.isRequired,
+  setPage: PropTypes.func,
 };
 
 export default Card;

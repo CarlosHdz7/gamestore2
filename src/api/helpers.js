@@ -1,6 +1,6 @@
 class Helpers {
   constructor() {
-    this.url = `https://week4-carloshdz.herokuapp.com`;
+    this.url = 'https://week4-carloshdz.herokuapp.com';
   }
 
   getConfig(method, body, headers = {}) {
@@ -19,28 +19,28 @@ class Helpers {
     };
   }
 
-  getGames = async () => {
+  async getGames () {
     const url = `${this.url}/games`;
     const resp = await fetch(url);
     const data = await resp.json();
     return data;
-  };
+  }
 
-  getGameById = async (id) => {
+  async getGameById (id) {
     const url = `${this.url}/games/${id}`;
     const resp = await fetch(url);
     const data = await resp.json();
     return data;
-  };
+  }
 
-  getCommentsByGame = async (id) => {
+  async getCommentsByGame (id) {
     const url = `${this.url}/games/${id}/comments?_sort=id&_order=desc`;
     const resp = await fetch(url);
     const data = await resp.json();
     return data;
-  };
+  }
 
-  postComment = async (data) => {
+  async postComment (data) {
     const url = `${this.url}/comments`;
     const response = await fetch(
       url,
@@ -52,7 +52,7 @@ class Helpers {
     }
 
     return response.json();
-  };
+  }
 }
 
 export default Helpers;

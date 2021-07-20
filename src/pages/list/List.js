@@ -27,7 +27,6 @@ const List = ({ setPage }) => {
     };
 
     fetchGames();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const indexOfLastGame = currentPage * gamesPerPage;
