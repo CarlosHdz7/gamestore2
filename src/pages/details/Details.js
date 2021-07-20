@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../components/card/Card.js';
-import Helpers from '../../api/helpers.js';
-import Loader from '../../components/loader/Loader.js';
-import Comments from '../../components/comments/Comments.js';
+import Card from '../../components/card/Card';
+import Helpers from '../../api/helpers';
+import Loader from '../../components/loader/Loader';
+import Comments from '../../components/comments/Comments';
 import './Details.scss';
 
 const helpers = new Helpers();
@@ -73,7 +73,7 @@ const Details = ({ id, setPage }) => {
           className="button-container__button"
           onClick={() => setPage({ currentPage: 'list', id: 0 })}
         >
-          <i className="button-container__icon bi bi-arrow-left-circle-fill"></i>
+          <i className="button-container__icon bi bi-arrow-left-circle-fill" />
           Back
         </button>
       </div>
@@ -98,7 +98,7 @@ const Details = ({ id, setPage }) => {
           className="comments-container__textarea"
           value={inputComment}
           onChange={handleInputChange}
-        ></textarea>
+        />
         <div className="comments-container-button">
           <button
             type="button"

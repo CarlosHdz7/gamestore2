@@ -3,16 +3,23 @@ import PropTypes from 'prop-types';
 import './Card.scss';
 
 const Card = ({ setPage, game }) => {
-  const { id, image, title, price } = game;
+  const {
+    id, image, title, price,
+  } = game;
 
   const redirectToDetails = () => {
-    setPage({ currentPage: 'details', id: id });
+    setPage({ currentPage: 'details', id });
+  };
+
+  const handleClick = () => {
+    redirectToDetails();
   };
 
   return (
-    <div className="card" onClick={setPage && redirectToDetails}>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+    <div role="button" tabIndex="0" className="card" onClick={handleClick}>
       <div className="card-img-container">
-        <img className="card-img" src={image} alt=""></img>
+        <img className="card-img" src={image} alt="" />
       </div>
       <div className="card-info">
         <p className="card-info__title">{title}</p>
@@ -30,8 +37,13 @@ const Card = ({ setPage, game }) => {
   );
 };
 
+Card.defaultProps = {
+  game: {},
+  setPage: () => {},
+};
+
 Card.propTypes = {
-  game: PropTypes.object.isRequired,
+  game: PropTypes.instanceOf(Object),
   setPage: PropTypes.func,
 };
 

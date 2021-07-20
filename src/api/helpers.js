@@ -3,9 +3,9 @@ class Helpers {
     this.url = 'https://week4-carloshdz.herokuapp.com';
   }
 
-  getConfig(method, body, headers = {}) {
+  static getConfig(method, body, headers = {}) {
     return {
-      method: method,
+      method,
       mode: 'cors',
       cache: 'no-cache',
       credentials: 'same-origin',
@@ -19,32 +19,32 @@ class Helpers {
     };
   }
 
-  async getGames () {
+  async getGames() {
     const url = `${this.url}/games`;
     const resp = await fetch(url);
     const data = await resp.json();
     return data;
   }
 
-  async getGameById (id) {
+  async getGameById(id) {
     const url = `${this.url}/games/${id}`;
     const resp = await fetch(url);
     const data = await resp.json();
     return data;
   }
 
-  async getCommentsByGame (id) {
+  async getCommentsByGame(id) {
     const url = `${this.url}/games/${id}/comments?_sort=id&_order=desc`;
     const resp = await fetch(url);
     const data = await resp.json();
     return data;
   }
 
-  async postComment (data) {
+  async postComment(data) {
     const url = `${this.url}/comments`;
     const response = await fetch(
       url,
-      this.getConfig('POST', JSON.stringify(data))
+      this.getConfig('POST', JSON.stringify(data)),
     );
 
     if (!response.ok) {

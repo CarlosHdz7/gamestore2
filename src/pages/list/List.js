@@ -18,8 +18,8 @@ const List = ({ setPage }) => {
     const fetchGames = async () => {
       try {
         setLoading(true);
-        const games = await helpers.getGames('');
-        setGames(games);
+        const gamesData = await helpers.getGames('');
+        setGames(gamesData);
         setLoading(false);
       } catch (error) {
         setPage({ currentPage: 'home', id: 0 });

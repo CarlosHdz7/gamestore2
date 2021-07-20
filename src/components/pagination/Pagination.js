@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Pagination.scss';
 
-const Pagination = ({ gamesPerPage, totalPosts, paginate, currentPage }) => {
+const Pagination = ({
+  gamesPerPage, totalPosts, paginate, currentPage,
+}) => {
   const pageNumbers = [];
 
   const [clickedId, setClickedId] = useState(1);
 
-  for (let i = 1; i <= Math.ceil(totalPosts / gamesPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalPosts / gamesPerPage); i += 1) {
     pageNumbers.push(i);
   }
 
@@ -40,7 +42,7 @@ const Pagination = ({ gamesPerPage, totalPosts, paginate, currentPage }) => {
       <ul className="pagination">
         <li className="page-item">
           <a onClick={(e) => handlePrev(e)} href="!#" className="page-link">
-            <i className="bi bi-caret-left-fill"></i>
+            <i className="bi bi-caret-left-fill" />
           </a>
         </li>
 
@@ -62,7 +64,7 @@ const Pagination = ({ gamesPerPage, totalPosts, paginate, currentPage }) => {
 
         <li className="page-item">
           <a onClick={(e) => handleNext(e)} href="!#" className="page-link">
-            <i className="bi bi-caret-right-fill"></i>
+            <i className="bi bi-caret-right-fill" />
           </a>
         </li>
       </ul>
