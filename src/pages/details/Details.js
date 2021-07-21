@@ -54,8 +54,7 @@ const Details = ({ id, setPage }) => {
         setGame(data);
         setLoadingGame(false);
       } catch (error) {
-        console.log(error);
-        // setPage({ currentPage: 'list', id: 0 });
+        setPage({ currentPage: 'list', id: 0 });
       }
     };
 
