@@ -31,7 +31,7 @@ class Helpers {
       genre: game.genre?.name,
       releaseYear: game.release_year,
       price: game.price,
-      urlImage: game.cover_art?.formats?.medium?.url,
+      urlImage: game.cover_art?.url,
     }));
     return games;
   }
@@ -47,7 +47,7 @@ class Helpers {
       genre: data.genre?.name,
       releaseYear: data.release_year,
       price: data.price,
-      urlImage: data.cover_art?.formats?.medium?.url,
+      urlImage: data.cover_art?.url,
       comments: data.comments,
     };
 
