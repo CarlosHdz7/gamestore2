@@ -24,7 +24,10 @@ const Card = ({ setPage, game }) => {
       <div className="card-info">
         <p className="card-info__title">{name}</p>
         <p className="card-info__subtitle">From</p>
-        <p className="card-info__price">{price}</p>
+        <p className="card-info__price">
+          $
+          {price}
+        </p>
         <button
           className="card-info__button"
           type="button"
