@@ -6,11 +6,11 @@ const Comments = ({ comments }) => {
   if (comments.length) {
     return (
       <>
-        {comments.map(({ id, comment }) => (
+        {comments.map(({ id, body }) => (
           <div className="comment" key={id}>
             <p>
               Anonymous:
-              {comment}
+              {body}
             </p>
           </div>
         ))}

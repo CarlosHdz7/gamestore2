@@ -48,6 +48,7 @@ class Helpers {
       releaseYear: data.release_year,
       price: data.price,
       urlImage: data.cover_art?.formats?.medium?.url,
+      comments: data.comments,
     };
 
     return game;

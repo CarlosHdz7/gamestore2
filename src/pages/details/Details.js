@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-// import Card from '../../components/card/Card';
 import Helpers from '../../api/helpers';
 import Loader from '../../components/loader/Loader';
 import Comments from '../../components/comments/Comments';
@@ -10,21 +9,8 @@ const helpers = new Helpers();
 
 const Details = ({ id, setPage }) => {
   const [game, setGame] = useState({});
-  const [comments, setComments] = useState([]);
   const [inputComment, setInputComment] = useState('');
-  const [loadingComments, setLoadingComments] = useState(false);
   const [loadingGame, setLoadingGame] = useState(false);
-
-  const fetchCommentsByGame = useCallback(async () => {
-    try {
-      setLoadingComments(true);
-      const data = await helpers.getCommentsByGame(id);
-      setComments(data);
-      setLoadingComments(false);
-    } catch (error) {
-      setPage({ currentPage: 'list', id: 0 });
-    }
-  }, [id, setPage]);
 
   const postComment = async () => {
     try {
@@ -34,7 +20,6 @@ const Details = ({ id, setPage }) => {
       };
 
       helpers.postComment(comment).then(() => {
-        fetchCommentsByGame();
         setInputComment('');
       });
     } catch (error) {
@@ -61,10 +46,6 @@ const Details = ({ id, setPage }) => {
     fetchGameById();
   }, [id, setPage]);
 
-  useEffect(() => {
-    fetchCommentsByGame();
-  }, [fetchCommentsByGame]);
-
   return (
     <>
       <div className="button-container">
@@ -81,52 +62,51 @@ const Details = ({ id, setPage }) => {
       {loadingGame && <Loader />}
 
       {!loadingGame && (
-        <div className="details-container">
-          <div className="container-img-cover">
-            <img className="container-img-cover__img" src={game.urlImage ? game.urlImage : '/images/controller.png'} alt="" />
+        <>
+          <div className="details-container">
+            <div className="container-img-cover">
+              <img className="container-img-cover__img" src={game.urlImage ? game.urlImage : '/images/controller.png'} alt="" />
+            </div>
+            <div className="info-container">
+              <p className="info-container__text info-container__text--name">{game.name}</p>
+              <p className="info-container__text">
+                Genre:
+                {game.genre}
+              </p>
+              <p className="info-container__text">
+                Release:
+                {game.releaseYear}
+              </p>
+              <p className="info-container__text">
+                Price:
+                {game.price}
+                $
+              </p>
+              <button type="button" className="info-container__button">Buy now</button>
+            </div>
           </div>
-          <div className="info-container">
-            <p className="info-container__text info-container__text--name">{game.name}</p>
-            <p className="info-container__text">
-              Genre:
-              {game.genre}
-            </p>
-            <p className="info-container__text">
-              Release:
-              {game.releaseYear}
-            </p>
-            <p className="info-container__text">
-              Price:
-              {game.price}
-              $
-            </p>
-            <button type="button" className="info-container__button">Buy now</button>
+          <div className="comments-container">
+            <p className="comments-container__title">Write a comment:</p>
+            <textarea
+              className="comments-container__textarea"
+              value={inputComment}
+              onChange={handleInputChange}
+            />
+            <div className="comments-container-button">
+              <button
+                type="button"
+                className="comment-button"
+                onClick={postComment}
+              >
+                Comment
+              </button>
+            </div>
+            <p className="comments-container__title">Comments:</p>
+
+            <Comments comments={game.comments} />
           </div>
-        </div>
+        </>
       )}
-
-      <div className="comments-container">
-        <p className="comments-container__title">Write a comment:</p>
-        <textarea
-          className="comments-container__textarea"
-          value={inputComment}
-          onChange={handleInputChange}
-        />
-        <div className="comments-container-button">
-          <button
-            type="button"
-            className="comment-button"
-            onClick={postComment}
-          >
-            Comment
-          </button>
-        </div>
-        <p className="comments-container__title">Comments:</p>
-
-        {loadingComments && <Loader />}
-
-        {!loadingComments && <Comments comments={comments} />}
-      </div>
     </>
   );
 };
