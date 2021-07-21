@@ -4,7 +4,7 @@ import './Card.scss';
 
 const Card = ({ setPage, game }) => {
   const {
-    id, image, title, price,
+    id, name, price, urlImage,
   } = game;
 
   const redirectToDetails = () => {
@@ -19,10 +19,10 @@ const Card = ({ setPage, game }) => {
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div role="button" tabIndex="0" className="card" onClick={handleClick}>
       <div className="card-img-container">
-        <img className="card-img" src={image} alt="" />
+        <img className="card-img" src={(urlImage) || '/images/controller.png'} alt="" />
       </div>
       <div className="card-info">
-        <p className="card-info__title">{title}</p>
+        <p className="card-info__title">{name}</p>
         <p className="card-info__subtitle">From</p>
         <p className="card-info__price">{price}</p>
         <button

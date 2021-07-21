@@ -3,7 +3,7 @@
 .details-container {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 2fr 10fr;
+  grid-template-columns: 4fr 8fr;
   grid-template-rows: auto;
   height: auto;
   padding-top: 20px;
@@ -11,25 +11,27 @@
 }
 
 .info-container {
-  padding: 10px;
-  padding-top: 0px;
+  background-color: $purple-color;
+  padding: 20px;
+  box-shadow: $shadow;
 }
 
-.info-container__title,
-.info-container__description {
+.info-container__text {
   color: $white-color;
 }
 
-.info-container__title {
+.info-container__text--name {
   font-size: 30px;
   font-weight: map-get($font-weights, bold);
   margin-top: 0px;
 }
 
-.info-container__description {
-  background-color: $purple-color;
-  padding: 20px;
-  box-shadow: $shadow;
+.info-container__button{
+  background-color: $secondary-color;
+  border: none;
+  padding: 10px;
+  width: 100px;
+  font-weight: 700;
 }
 
 .comments-container__title {
@@ -59,6 +61,14 @@
   cursor: pointer;
   padding: 10px;
   box-shadow: $shadow;
+}
+
+.container-img-cover{
+  width: 100%;
+}
+
+.container-img-cover__img{
+  width: 100%;
 }
 
 @media (max-width: $tablet) {

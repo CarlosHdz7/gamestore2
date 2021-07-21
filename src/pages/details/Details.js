@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../components/card/Card';
+// import Card from '../../components/card/Card';
 import Helpers from '../../api/helpers';
 import Loader from '../../components/loader/Loader';
 import Comments from '../../components/comments/Comments';
@@ -54,7 +54,8 @@ const Details = ({ id, setPage }) => {
         setGame(data);
         setLoadingGame(false);
       } catch (error) {
-        setPage({ currentPage: 'list', id: 0 });
+        console.log(error);
+        // setPage({ currentPage: 'list', id: 0 });
       }
     };
 
@@ -82,12 +83,25 @@ const Details = ({ id, setPage }) => {
 
       {!loadingGame && (
         <div className="details-container">
-          <div className="card-container">
-            <Card game={game} />
+          <div className="container-img-cover">
+            <img className="container-img-cover__img" src={game.urlImage ? game.urlImage : '/images/controller.png'} alt="" />
           </div>
           <div className="info-container">
-            <p className="info-container__title">{game.title}</p>
-            <p className="info-container__description">{game.description}</p>
+            <p className="info-container__text info-container__text--name">{game.name}</p>
+            <p className="info-container__text">
+              Genre:
+              {game.genre}
+            </p>
+            <p className="info-container__text">
+              Release:
+              {game.releaseYear}
+            </p>
+            <p className="info-container__text">
+              Price:
+              {game.price}
+              $
+            </p>
+            <button type="button" className="info-container__button">Buy now</button>
           </div>
         </div>
       )}

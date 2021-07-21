@@ -1,6 +1,7 @@
 class Helpers {
   constructor() {
-    this.url = 'https://week4-carloshdz.herokuapp.com';
+    // this.url = 'https://week4-carloshdz.herokuapp.com';
+    this.url = 'https://trainee-gamerbox.herokuapp.com';
   }
 
   static getConfig(method, body, headers = {}) {
@@ -23,14 +24,33 @@ class Helpers {
     const url = `${this.url}/games`;
     const resp = await fetch(url);
     const data = await resp.json();
-    return data;
+
+    const games = data.map((game) => ({
+      id: game.id,
+      name: game.name,
+      genre: game.genre?.name,
+      releaseYear: game.release_year,
+      price: game.price,
+      urlImage: game.cover_art?.formats?.medium?.url,
+    }));
+    return games;
   }
 
   async getGameById(id) {
     const url = `${this.url}/games/${id}`;
     const resp = await fetch(url);
     const data = await resp.json();
-    return data;
+
+    const game = {
+      id: data.id,
+      name: data.name,
+      genre: data.genre?.name,
+      releaseYear: data.release_year,
+      price: data.price,
+      urlImage: data.cover_art?.formats?.medium?.url,
+    };
+
+    return game;
   }
 
   async getCommentsByGame(id) {
