@@ -1,8 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Helpers from '../api/helpers';
 
 const useFetchGame = (id) => {
   const helpers = new Helpers();
+  const isMounted = useRef(true);
+
+  useEffect(() => () => {
+    isMounted.current = false;
+  }, []);
 
   const [state, setState] = useState({
     data: [],
@@ -11,10 +16,12 @@ const useFetchGame = (id) => {
 
   useEffect(() => {
     helpers.getGameById(id).then((game) => {
-      setState({
-        data: game,
-        loading: false,
-      });
+      if (isMounted.current) {
+        setState({
+          data: game,
+          loading: false,
+        });
+      }
     });
   }, [id]);
 

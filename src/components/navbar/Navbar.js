@@ -25,6 +25,13 @@ const Navbar = ({ setPage }) => (
       >
         Store
       </a>
+      <a
+        href="/#"
+        className="navbar-options__item"
+        onClick={() => setPage('login')}
+      >
+        Login
+      </a>
     </div>
   </div>
 );
