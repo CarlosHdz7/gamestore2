@@ -1,29 +1,11 @@
 import React, { useState } from 'react';
 import Navbar from '../navbar/Navbar';
-import Home from '../../pages/home/Home';
-import List from '../../pages/list/List';
 import Footer from '../footer/Footer';
-import Details from '../../pages/details/Details';
+import routes from '../../api/routes';
 import './App.scss';
 
 function App() {
   const [page, setPage] = useState('home');
-
-  const routes = [
-    {
-      name: 'home',
-      component: Home,
-    },
-    {
-      name: 'list',
-      component: List,
-    },
-    {
-      name: 'details',
-      component: Details,
-      renderIf: (currentPage) => currentPage.toString().indexOf('details/') !== -1,
-    },
-  ];
 
   return (
     <div className="App">
