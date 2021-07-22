@@ -33,4 +33,4 @@ Navbar.propTypes = {
   setPage: PropTypes.func.isRequired,
 };
 
-export default Navbar;
+export default React.memo(Navbar);
