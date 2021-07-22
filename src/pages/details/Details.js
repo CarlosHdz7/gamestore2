@@ -7,10 +7,11 @@ import './Details.scss';
 
 const helpers = new Helpers();
 
-const Details = ({ id, setPage }) => {
+const Details = ({ page, setPage }) => {
   const [game, setGame] = useState({});
   const [inputComment, setInputComment] = useState('');
   const [loadingGame, setLoadingGame] = useState(false);
+  const id = page.split('/')[1];
 
   const postComment = async () => {
     try {
@@ -52,7 +53,7 @@ const Details = ({ id, setPage }) => {
         <button
           type="button"
           className="button-container__button"
-          onClick={() => setPage({ currentPage: 'list', id: 0 })}
+          onClick={() => setPage('list')}
         >
           <i className="button-container__icon bi bi-arrow-left-circle-fill" />
           Back
@@ -112,7 +113,7 @@ const Details = ({ id, setPage }) => {
 };
 
 Details.propTypes = {
-  id: PropTypes.number.isRequired,
+  page: PropTypes.string.isRequired,
   setPage: PropTypes.func.isRequired,
 };
 

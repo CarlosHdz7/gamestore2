@@ -8,7 +8,8 @@ const Card = ({ setPage, game }) => {
   } = game;
 
   const redirectToDetails = () => {
-    setPage({ currentPage: 'details', id });
+    // setPage({ currentPage: 'details', id });
+    setPage(`details/${id}`);
   };
 
   const handleClick = () => {

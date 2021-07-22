@@ -15,7 +15,7 @@ const Home = ({ setPage }) => (
           <button
             type="button"
             className="container-info__button"
-            onClick={() => setPage({ currentPage: 'list', id: 0 })}
+            onClick={() => setPage('list')}
           >
             Go to store
           </button>

@@ -12,7 +12,7 @@ const Navbar = ({ setPage }) => (
         role="button"
         tabIndex="0"
         className="navbar-logo"
-        onClick={() => setPage({ currentPage: 'home', id: 0 })}
+        onClick={() => setPage('home')}
       >
         GameStore
       </div>
@@ -21,7 +21,7 @@ const Navbar = ({ setPage }) => (
       <a
         href="/#"
         className="navbar-options__item"
-        onClick={() => setPage({ currentPage: 'list', id: 0 })}
+        onClick={() => setPage('list')}
       >
         Store
       </a>

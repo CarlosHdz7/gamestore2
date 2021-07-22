@@ -7,22 +7,35 @@ import Details from '../../pages/details/Details';
 import './App.scss';
 
 function App() {
-  const [page, setPage] = useState({ currentPage: 'home', id: 0 });
+  const [page, setPage] = useState('home');
+
+  const routes = [
+    {
+      name: 'home',
+      component: Home,
+    },
+    {
+      name: 'list',
+      component: List,
+    },
+    {
+      name: 'details',
+      component: Details,
+      renderIf: (currentPage) => currentPage.toString().indexOf('details/') !== -1,
+    },
+  ];
 
   return (
     <div className="App">
-      <div className="navbar-container">
-        <Navbar setPage={setPage} />
-      </div>
-
+      <Navbar setPage={setPage} />
       <div className="container">
-        {page.currentPage === 'home' && <Home setPage={setPage} />}
-        {page.currentPage === 'list' && <List setPage={setPage} />}
-        {page.currentPage === 'details' && (
-          <Details id={page.id} setPage={setPage} />
-        )}
+        {routes.map(({ name, component: Component, renderIf }) => {
+          if (page === name || (renderIf && renderIf(page))) {
+            return <Component key={name} setPage={setPage} page={page} />;
+          }
+          return null;
+        })}
       </div>
-
       <Footer />
     </div>
   );
