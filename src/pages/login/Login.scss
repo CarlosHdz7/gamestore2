@@ -1,0 +1,14 @@
+@import '../../styles/Settings.scss';
+
+.login-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container__button{
+  margin-top: 10px;
+  color:$white-color;
+  padding: 10px;
+  background-color: $dark-purple-color;
+}
