@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Helpers from '../../api/helpers';
-import Loader from '../../components/loader/Loader';
-import Comments from '../../components/comments/Comments';
+import Loader from '../../components/loader';
+import Comments from '../../components/comments';
 import './Details.scss';
 
 const helpers = new Helpers();

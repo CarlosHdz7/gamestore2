@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Pagination from '../../components/pagination/Pagination';
-import Card from '../../components/card/Card';
 import Helpers from '../../api/helpers';
-import Loader from '../../components/loader/Loader';
+import Pagination from '../../components/pagination';
+import Card from '../../components/card';
+import Loader from '../../components/loader';
 import './List.scss';
 
 const List = ({ setPage }) => {

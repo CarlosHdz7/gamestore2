@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Navbar from '../navbar/Navbar';
-import Footer from '../footer/Footer';
+import Navbar from '../navbar';
+import Footer from '../footer';
 import routes from '../../api/routes';
-import './App.scss';
 
 function App() {
   const [page, setPage] = useState('home');
