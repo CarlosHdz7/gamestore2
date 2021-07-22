@@ -74,6 +74,29 @@ class Helpers {
 
     return response.json();
   }
+
+  async postLogin(credentials) {
+    const url = `${this.url}/auth/local`;
+    const response = await fetch(
+      url,
+      Helpers.getConfig('POST', JSON.stringify(credentials)),
+    );
+
+    if (!response.ok) {
+      throw new Error('Error');
+    }
+
+    const data = await response.json();
+
+    const user = {
+      id: data.user.id,
+      jwt: data.jwt,
+      username: data.user.username,
+      email: data.user.email,
+    };
+
+    return user;
+  }
 }
 
 export default Helpers;
