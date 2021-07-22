@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
@@ -13,7 +13,7 @@ const Details = ({ page, setPage }) => {
   const [loadingGame, setLoadingGame] = useState(false);
   const id = page.split('/')[1];
 
-  const postComment = async () => {
+  const postComment = useCallback(async () => {
     try {
       const comment = {
         gameId: id,
@@ -26,11 +26,15 @@ const Details = ({ page, setPage }) => {
     } catch (error) {
       setPage({ currentPage: 'list', id: 0 });
     }
-  };
+  }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     setInputComment(e.target.value);
-  };
+  }, []);
+
+  const handleBackClick = useCallback(() => {
+    setPage('list');
+  }, []);
 
   useEffect(() => {
     const fetchGameById = async () => {
@@ -53,7 +57,7 @@ const Details = ({ page, setPage }) => {
         <button
           type="button"
           className="button-container__button"
-          onClick={() => setPage('list')}
+          onClick={handleBackClick}
         >
           <i className="button-container__icon bi bi-arrow-left-circle-fill" />
           Back
