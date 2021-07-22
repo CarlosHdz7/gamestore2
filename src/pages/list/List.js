@@ -1,33 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Helpers from '../../api/helpers';
+// import Helpers from '../../api/helpers';
 import Pagination from '../../components/pagination';
 import Card from '../../components/card';
 import Loader from '../../components/loader';
+import useFetchGames from '../../hooks/useFetchGames';
 import './List.scss';
 
 const List = ({ setPage }) => {
-  const helpers = new Helpers();
-
-  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage] = useState(8);
-  const [games, setGames] = useState([]);
 
-  useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        setLoading(true);
-        const gamesData = await helpers.getGames('');
-        setGames(gamesData);
-        setLoading(false);
-      } catch (error) {
-        setPage({ currentPage: 'home', id: 0 });
-      }
-    };
-
-    fetchGames();
-  }, []);
+  const { data: games, loading } = useFetchGames();
 
   const indexOfLastGame = currentPage * gamesPerPage;
   const indexOfFirstGame = indexOfLastGame - gamesPerPage;
