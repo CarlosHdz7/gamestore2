@@ -28,7 +28,7 @@ const Details = ({ page, setPage }) => {
         setInputComment('');
       });
     } catch (error) {
-      setPage({ currentPage: 'list', id: 0 });
+      setPage('list');
     }
   }, []);
 
