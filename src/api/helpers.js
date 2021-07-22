@@ -55,7 +55,7 @@ class Helpers {
   }
 
   async getCommentsByGame(id) {
-    const url = `${this.url}/games/${id}/comments?_sort=id&_order=desc`;
+    const url = `${this.url}/games/${id}/comments`;
     const resp = await fetch(url);
     const data = await resp.json();
     return data;

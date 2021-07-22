@@ -4,6 +4,7 @@ import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
 import Comments from '../../components/comments';
 import useFetchGame from '../../hooks/useFetchGame';
+import useFetchComments from '../../hooks/useFetchComments';
 import './Details.scss';
 
 const helpers = new Helpers();
@@ -11,6 +12,10 @@ const helpers = new Helpers();
 const Details = ({ page, setPage }) => {
   const [inputComment, setInputComment] = useState('');
   const id = page.split('/')[1];
+
+  const { data: game, loading } = useFetchGame(id);
+
+  const { data: comments, loadingComments } = useFetchComments(id);
 
   const postComment = useCallback(async () => {
     try {
@@ -34,8 +39,6 @@ const Details = ({ page, setPage }) => {
   const handleBackClick = useCallback(() => {
     setPage('list');
   }, []);
-
-  const { data: game, loading } = useFetchGame(id);
 
   return (
     <>
@@ -94,7 +97,10 @@ const Details = ({ page, setPage }) => {
             </div>
             <p className="comments-container__title">Comments:</p>
 
-            <Comments comments={game.comments} />
+            {loadingComments && <Loader />}
+
+            {!loadingComments && <Comments comments={comments} />}
+
           </div>
         </>
       )}
