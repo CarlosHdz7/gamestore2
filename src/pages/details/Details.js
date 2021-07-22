@@ -1,16 +1,15 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
 import Comments from '../../components/comments';
+import useFetchGame from '../../hooks/useFetchGame';
 import './Details.scss';
 
 const helpers = new Helpers();
 
 const Details = ({ page, setPage }) => {
-  const [game, setGame] = useState({});
   const [inputComment, setInputComment] = useState('');
-  const [loadingGame, setLoadingGame] = useState(false);
   const id = page.split('/')[1];
 
   const postComment = useCallback(async () => {
@@ -36,20 +35,7 @@ const Details = ({ page, setPage }) => {
     setPage('list');
   }, []);
 
-  useEffect(() => {
-    const fetchGameById = async () => {
-      try {
-        setLoadingGame(true);
-        const data = await helpers.getGameById(id);
-        setGame(data);
-        setLoadingGame(false);
-      } catch (error) {
-        setPage({ currentPage: 'list', id: 0 });
-      }
-    };
-
-    fetchGameById();
-  }, [id, setPage]);
+  const { data: game, loading } = useFetchGame(id);
 
   return (
     <>
@@ -64,9 +50,9 @@ const Details = ({ page, setPage }) => {
         </button>
       </div>
 
-      {loadingGame && <Loader />}
+      {loading && <Loader />}
 
-      {!loadingGame && (
+      {!loading && (
         <>
           <div className="details-container">
             <div className="container-img-cover">
