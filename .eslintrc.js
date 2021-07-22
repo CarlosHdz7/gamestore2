@@ -13,6 +13,8 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    semi: ['error', 'always'],
+    quotes: ['error', 'single'],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'import/no-extraneous-dependencies': [
       'warn',

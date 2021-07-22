@@ -10,13 +10,12 @@ const useFetchGame = (id) => {
   });
 
   useEffect(() => {
-    helpers.getGameById(id)
-      .then((game) => {
-        setState({
-          data: game,
-          loading: false,
-        });
+    helpers.getGameById(id).then((game) => {
+      setState({
+        data: game,
+        loading: false,
       });
+    });
   }, [id]);
 
   return state;
