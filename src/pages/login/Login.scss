@@ -1,14 +1,36 @@
 @import '../../styles/Settings.scss';
 
 .login-container{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  grid-template-rows: auto;
+  grid-gap:10px;
 }
 
-.login-container__button{
-  margin-top: 10px;
+.login-container__form{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: $purple-color;
   color:$white-color;
+}
+
+.form__title{
+  color:$white-color;
+  font-size: 25px;
+}
+
+.form__input{
   padding: 10px;
-  background-color: $dark-purple-color;
+  border: none;
+}
+
+.form__button{
+  margin-top: 15px;
+  color:$purple-color;
+  padding: 10px;
+  background-color: $secondary-color;
+  font-weight: map-get($font-weights, bold);
 }

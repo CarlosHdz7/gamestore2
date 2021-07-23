@@ -5,7 +5,7 @@ import '../../styles/Common.scss';
 import '../../styles/Utilities.scss';
 import './Navbar.scss';
 
-const Navbar = ({ setPage }) => (
+const Navbar = ({ setPage, isLogged }) => (
   <div className="navbar">
     <div className="d-flex">
       <div
@@ -25,19 +25,28 @@ const Navbar = ({ setPage }) => (
       >
         Store
       </a>
-      <a
-        href="/#"
-        className="navbar-options__item"
-        onClick={() => setPage('login')}
-      >
-        Login
-      </a>
+
+      {isLogged && <p>Logged</p>}
+      {!isLogged && (
+        <a
+          href="/#"
+          className="navbar-options__item"
+          onClick={() => setPage('login')}
+        >
+          Login
+        </a>
+      )}
     </div>
   </div>
 );
 
+Navbar.defaultProps = {
+  isLogged: false,
+};
+
 Navbar.propTypes = {
+  isLogged: PropTypes.bool,
   setPage: PropTypes.func.isRequired,
 };
 
-export default React.memo(Navbar);
+export default Navbar;
