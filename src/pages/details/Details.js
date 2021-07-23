@@ -4,7 +4,6 @@ import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
 import Comments from '../../components/comments';
 import useFetchGame from '../../hooks/useFetchGame';
-// import useFetchComments from '../../hooks/useFetchComments';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import './Details.scss';
 
@@ -16,10 +15,7 @@ const Details = ({ page, setPage, isLogged }) => {
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(false);
   const id = page.split('/')[1];
-
   const { data: game, loading } = useFetchGame(id);
-
-  // const { data: comments, loading: loadingComments } = useFetchComments(id);
 
   const fetchCommentsByGame = useCallback(async () => {
     try {
