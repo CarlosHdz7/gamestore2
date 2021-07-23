@@ -1,6 +1,5 @@
 import React, { useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import useLocalStorage from '../../hooks/useLocalStorage';
 import './Login.scss';
 import Helpers from '../../api/helpers';
 
@@ -8,11 +7,7 @@ function Login({ setPage, isAuthenticated, login }) {
   const helpers = new Helpers();
   const inputUser = useRef();
   const inputPassword = useRef();
-  // const [, setStorage] = useLocalStorage('user');
 
-  // const [storage] = useLocalStorage('user');
-
-  // check if I am authenticated
   useEffect(() => {
     if (isAuthenticated()) {
       setPage('list');

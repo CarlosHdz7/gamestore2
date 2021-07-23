@@ -3,22 +3,10 @@ import Navbar from '../navbar';
 import Footer from '../footer';
 import routes from '../../api/routes';
 import useAuth from '../../hooks/useAuth';
-// import useLocalStorage from '../../hooks/useLocalStorage';
 
 function App() {
   const [page, setPage] = useState('home');
-  // const [storage] = useLocalStorage('user');
-  // const [isLogged, setIsLogged] = useState(false);
   const { isAuthenticated, login, logout } = useAuth();
-
-  // check if I am authenticated
-  // useEffect(() => {
-  //   if (storage.username) {
-  //     setIsLogged(true);
-  //   } else {
-  //     setIsLogged(false);
-  //   }
-  // }, []);
 
   return (
     <div className="App">
