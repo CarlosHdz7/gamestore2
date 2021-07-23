@@ -55,17 +55,17 @@ class Helpers {
   }
 
   async getCommentsByGame(id) {
-    const url = `${this.url}/games/${id}/comments`;
+    const url = `${this.url}/games/${id}/comments?_limit=100&_sort=id&_order=asc`;
     const resp = await fetch(url);
     const data = await resp.json();
     return data;
   }
 
-  async postComment(data) {
-    const url = `${this.url}/comments`;
+  async postComment(id, data, headers) {
+    const url = `${this.url}/games/${id}/comment`;
     const response = await fetch(
       url,
-      this.getConfig('POST', JSON.stringify(data)),
+      Helpers.getConfig('POST', JSON.stringify(data), headers),
     );
 
     if (!response.ok) {

@@ -4,46 +4,63 @@ import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
 import Comments from '../../components/comments';
 import useFetchGame from '../../hooks/useFetchGame';
-import useFetchComments from '../../hooks/useFetchComments';
+// import useFetchComments from '../../hooks/useFetchComments';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import './Details.scss';
 
 const helpers = new Helpers();
 
 const Details = ({ page, setPage, isLogged }) => {
   const [inputComment, setInputComment] = useState('');
+  const [storage] = useLocalStorage('user');
+  const [comments, setComments] = useState([]);
+  const [loadingComments, setLoadingComments] = useState(false);
   const id = page.split('/')[1];
-
-  // check if I am authenticated
-  useEffect(() => {
-    if (isLogged) {
-      console.log('authenticated');
-    } else {
-      console.log('no authenticated');
-    }
-  }, []);
 
   const { data: game, loading } = useFetchGame(id);
 
-  const { data: comments, loadingComments } = useFetchComments(id);
+  // const { data: comments, loading: loadingComments } = useFetchComments(id);
 
-  const postComment = useCallback(async () => {
+  const fetchCommentsByGame = useCallback(async () => {
     try {
+      setLoadingComments(true);
+      const data = await helpers.getCommentsByGame(id);
+      setComments(data);
+      setLoadingComments(false);
+    } catch (error) {
+      setPage('home');
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchCommentsByGame();
+  }, [fetchCommentsByGame]);
+
+  const postComment = () => {
+    try {
+      if (!inputComment) return;
+
       const comment = {
-        gameId: id,
-        comment: inputComment,
+        body: inputComment,
       };
 
-      helpers.postComment(comment).then(() => {
+      const headers = {
+        Authorization: `Bearer ${storage.jwt}`,
+      };
+
+      helpers.postComment(id, comment, headers).then(() => {
         setInputComment('');
+        fetchCommentsByGame();
       });
     } catch (error) {
       setPage('list');
     }
-  }, []);
+  };
 
-  const handleInputChange = useCallback((e) => {
+  const handleInputChange = (e) => {
+    console.log('change');
     setInputComment(e.target.value);
-  }, []);
+  };
 
   const handleBackClick = useCallback(() => {
     setPage('list');
@@ -96,35 +113,35 @@ const Details = ({ page, setPage, isLogged }) => {
               </button>
             </div>
           </div>
-          <div className="comments-container">
-            {isLogged && (
-              <>
-                <p className="comments-container__title">Write a comment:</p>
-                <textarea
-                  className="comments-container__textarea"
-                  value={inputComment}
-                  onChange={handleInputChange}
-                />
-                <div className="comments-container-button">
-                  <button
-                    type="button"
-                    className="comment-button"
-                    onClick={postComment}
-                  >
-                    Comment
-                  </button>
-                </div>
-              </>
-            )}
-
-            <p className="comments-container__title">Comments:</p>
-
-            {loadingComments && <Loader />}
-
-            {!loadingComments && <Comments comments={comments} />}
-          </div>
         </>
       )}
+      <div className="comments-container">
+        {isLogged && (
+          <>
+            <p className="comments-container__title">Write a comment:</p>
+            <textarea
+              className="comments-container__textarea"
+              value={inputComment}
+              onChange={handleInputChange}
+            />
+            <div className="comments-container-button">
+              <button
+                type="button"
+                className="comment-button"
+                onClick={postComment}
+              >
+                Comment
+              </button>
+            </div>
+          </>
+        )}
+
+        <p className="comments-container__title">Comments:</p>
+
+        {loadingComments && <Loader />}
+
+        {!loadingComments && <Comments comments={comments} />}
+      </div>
     </>
   );
 };
