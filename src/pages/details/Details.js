@@ -1,9 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
 import Comments from '../../components/comments';
 import useFetchGame from '../../hooks/useFetchGame';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import useFetchComments from '../../hooks/useFetchComments';
 import './Details.scss';
 
@@ -12,6 +13,17 @@ const helpers = new Helpers();
 const Details = ({ page, setPage }) => {
   const [inputComment, setInputComment] = useState('');
   const id = page.split('/')[1];
+
+  const [storage] = useLocalStorage('user');
+
+  // check if I am authenticated
+  useEffect(() => {
+    if (storage.username) {
+      console.log('authenticated');
+    } else {
+      console.log('no authenticated');
+    }
+  }, []);
 
   const { data: game, loading } = useFetchGame(id);
 

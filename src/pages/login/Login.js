@@ -1,6 +1,6 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import useLocalStorageState from '../../hooks/useLocalStorage';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import './Login.scss';
 import Helpers from '../../api/helpers';
 
@@ -8,22 +8,30 @@ function Login({ setPage }) {
   const helpers = new Helpers();
   const inputUser = useRef();
   const inputPassword = useRef();
+  const [, setStorage] = useLocalStorage('user');
 
-  const [, setStorage] = useLocalStorageState('user');
+  const [storage] = useLocalStorage('user');
 
-  const login = useCallback(async (credentials) => {
+  // check if I am authenticated
+  useEffect(() => {
+    if (storage.username) {
+      setPage('list');
+    }
+  }, []);
+
+  const login = useCallback(async () => {
+    const credentials = {
+      identifier: inputUser.current.value,
+      password: inputPassword.current.value,
+    };
+
     const userInfo = await helpers.postLogin(credentials);
     setStorage(userInfo);
     setPage('list');
   });
 
   const handleClick = () => {
-    const credentials = {
-      identifier: inputUser.current.value,
-      password: inputPassword.current.value,
-    };
-
-    login(credentials);
+    login();
   };
 
   return (
