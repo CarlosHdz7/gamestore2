@@ -20,7 +20,7 @@ const useAuth = () => {
   };
 
   const logout = () => {
-    setStorage('user', {});
+    setStorage({});
     setIsLogged(false);
   };
 
