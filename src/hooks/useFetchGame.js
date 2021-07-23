@@ -5,16 +5,14 @@ const useFetchGame = (id) => {
   const helpers = new Helpers();
   const isMounted = useRef(true);
 
-  useEffect(() => () => {
-    isMounted.current = false;
-  }, []);
-
   const [state, setState] = useState({
     data: [],
     loading: true,
   });
 
   useEffect(() => {
+    isMounted.current = true;
+
     helpers.getGameById(id).then((game) => {
       if (isMounted.current) {
         setState({
@@ -23,6 +21,9 @@ const useFetchGame = (id) => {
         });
       }
     });
+    return () => {
+      isMounted.current = false;
+    };
   }, [id]);
 
   return state;

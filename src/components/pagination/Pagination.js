@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './Pagination.scss';
 
 const Pagination = ({
   gamesPerPage, totalPosts, paginate, currentPage,
 }) => {
-  const pageNumbers = [];
-
   const [clickedId, setClickedId] = useState(1);
 
-  for (let i = 1; i <= Math.ceil(totalPosts / gamesPerPage); i += 1) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = useRef([]);
+
+  const calculatePages = () => {
+    for (let i = 1; i <= Math.ceil(totalPosts / gamesPerPage); i += 1) {
+      pageNumbers.current.push(i);
+    }
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const paginating = useMemo(() => calculatePages(), [totalPosts, gamesPerPage]);
 
   const handlePaginate = (e, number) => {
     e.preventDefault();
@@ -31,7 +36,7 @@ const Pagination = ({
   const handleNext = (e) => {
     e.preventDefault();
     const nextPage = currentPage + 1;
-    if (nextPage <= pageNumbers.length) {
+    if (nextPage <= pageNumbers.current.length) {
       paginate(nextPage);
       setClickedId(nextPage);
     }
@@ -46,7 +51,7 @@ const Pagination = ({
           </a>
         </li>
 
-        {pageNumbers.map((number) => (
+        {pageNumbers.current.map((number) => (
           <li key={number} className="page-item">
             <a
               onClick={(e) => handlePaginate(e, number)}

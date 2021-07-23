@@ -5,16 +5,14 @@ const useFetchComments = (id) => {
   const helpers = new Helpers();
   const isMounted = useRef(true);
 
-  useEffect(() => () => {
-    isMounted.current = false;
-  }, []);
-
   const [state, setState] = useState({
     data: [],
     loading: true,
   });
 
   useEffect(() => {
+    isMounted.current = true;
+
     helpers.getCommentsByGame(id)
       .then((comments) => {
         if (isMounted.current) {
@@ -24,6 +22,9 @@ const useFetchComments = (id) => {
           });
         }
       });
+    return () => {
+      isMounted.current = false;
+    };
   }, [id]);
 
   return state;
