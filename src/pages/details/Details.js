@@ -9,7 +9,7 @@ import './Details.scss';
 
 const helpers = new Helpers();
 
-const Details = ({ page, setPage, isLogged }) => {
+const Details = ({ page, setPage, isAuthenticated }) => {
   const [inputComment, setInputComment] = useState('');
   const [storage] = useLocalStorage('user');
   const [comments, setComments] = useState([]);
@@ -54,7 +54,6 @@ const Details = ({ page, setPage, isLogged }) => {
   };
 
   const handleInputChange = (e) => {
-    console.log('change');
     setInputComment(e.target.value);
   };
 
@@ -112,7 +111,7 @@ const Details = ({ page, setPage, isLogged }) => {
         </>
       )}
       <div className="comments-container">
-        {isLogged && (
+        {isAuthenticated() && (
           <>
             <p className="comments-container__title">Write a comment:</p>
             <textarea
@@ -142,14 +141,11 @@ const Details = ({ page, setPage, isLogged }) => {
   );
 };
 
-Details.defaultProps = {
-  isLogged: false,
-};
-
 Details.propTypes = {
   page: PropTypes.string.isRequired,
   setPage: PropTypes.func.isRequired,
-  isLogged: PropTypes.bool,
+  isAuthenticated: PropTypes.func.isRequired,
+
 };
 
 export default Details;

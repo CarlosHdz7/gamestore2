@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../navbar';
 import Footer from '../footer';
 import routes from '../../api/routes';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import useAuth from '../../hooks/useAuth';
+// import useLocalStorage from '../../hooks/useLocalStorage';
 
 function App() {
   const [page, setPage] = useState('home');
-  const [storage] = useLocalStorage('user');
-  const [isLogged, setIsLogged] = useState(false);
+  // const [storage] = useLocalStorage('user');
+  // const [isLogged, setIsLogged] = useState(false);
+  const { isAuthenticated, login, logout } = useAuth();
 
   // check if I am authenticated
-  useEffect(() => {
-    if (storage.username) {
-      setIsLogged(true);
-    } else {
-      setIsLogged(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (storage.username) {
+  //     setIsLogged(true);
+  //   } else {
+  //     setIsLogged(false);
+  //   }
+  // }, []);
 
   return (
     <div className="App">
-      <Navbar setPage={setPage} isLogged={isLogged} />
+      <Navbar setPage={setPage} isAuthenticated={isAuthenticated} logout={logout} />
       <div className="container">
         {routes.map(({ name, component: Component, renderIf }) => {
           if (page === name || (renderIf && renderIf(page))) {
@@ -29,8 +31,8 @@ function App() {
                 key={name}
                 setPage={setPage}
                 page={page}
-                isLogged={isLogged}
-                setIsLogged={setIsLogged}
+                login={login}
+                isAuthenticated={isAuthenticated}
               />
             );
           }

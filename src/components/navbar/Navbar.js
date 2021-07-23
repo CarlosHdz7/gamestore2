@@ -5,7 +5,7 @@ import '../../styles/Common.scss';
 import '../../styles/Utilities.scss';
 import './Navbar.scss';
 
-const Navbar = ({ setPage, isLogged }) => (
+const Navbar = ({ setPage, isAuthenticated }) => (
   <div className="navbar">
     <div className="d-flex">
       <div
@@ -26,8 +26,8 @@ const Navbar = ({ setPage, isLogged }) => (
         Store
       </a>
 
-      {isLogged && <p>Logged</p>}
-      {!isLogged && (
+      {isAuthenticated() && <p>Logged</p>}
+      {!isAuthenticated() && (
         <a
           href="/#"
           className="navbar-options__item"
@@ -40,12 +40,8 @@ const Navbar = ({ setPage, isLogged }) => (
   </div>
 );
 
-Navbar.defaultProps = {
-  isLogged: false,
-};
-
 Navbar.propTypes = {
-  isLogged: PropTypes.bool,
+  isAuthenticated: PropTypes.func.isRequired,
   setPage: PropTypes.func.isRequired,
 };
 
