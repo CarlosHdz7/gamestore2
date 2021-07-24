@@ -3,16 +3,15 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import './Login.scss';
-import Helpers from '../../api/helpers';
 
-function Login({ setPage, isAuthenticated, login }) {
-  const helpers = new Helpers();
+// eslint-disable-next-line react/prop-types
+function Login({ setPage, user, login }) {
   const inputUser = useRef();
   const inputPassword = useRef();
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (isAuthenticated()) {
+    if (user) {
       setPage('list');
     }
   }, []);
@@ -24,8 +23,7 @@ function Login({ setPage, isAuthenticated, login }) {
     };
 
     try {
-      const userInfo = await helpers.postLogin(credentials);
-      login(userInfo);
+      login(credentials);
       setPage('list');
     } catch (e) {
       setError(true);
@@ -66,7 +64,6 @@ function Login({ setPage, isAuthenticated, login }) {
 
 Login.propTypes = {
   setPage: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
 };
 

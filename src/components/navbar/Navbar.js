@@ -5,7 +5,8 @@ import '../../styles/Common.scss';
 import '../../styles/Utilities.scss';
 import './Navbar.scss';
 
-const Navbar = ({ setPage, isAuthenticated, logout }) => (
+// eslint-disable-next-line react/prop-types
+const Navbar = ({ setPage, user, logout }) => (
   <div className="navbar">
     <div className="d-flex">
       <div
@@ -26,7 +27,7 @@ const Navbar = ({ setPage, isAuthenticated, logout }) => (
         Store
       </a>
 
-      {isAuthenticated() && (
+      {user && (
         <a
           href="/#"
           className="navbar-options__item"
@@ -35,7 +36,7 @@ const Navbar = ({ setPage, isAuthenticated, logout }) => (
           Logout
         </a>
       )}
-      {!isAuthenticated() && (
+      {!user && (
         <a
           href="/#"
           className="navbar-options__item"
@@ -49,7 +50,6 @@ const Navbar = ({ setPage, isAuthenticated, logout }) => (
 );
 
 Navbar.propTypes = {
-  isAuthenticated: PropTypes.func.isRequired,
   setPage: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
 };

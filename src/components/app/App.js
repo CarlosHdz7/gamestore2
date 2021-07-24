@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import Navbar from '../navbar';
 import Footer from '../footer';
 import routes from '../../api/routes';
-import useAuth from '../../hooks/useAuth';
+import useAuth2 from '../../hooks/useAuth2';
 
 function App() {
   const [page, setPage] = useState('home');
-  const { isAuthenticated, login, logout } = useAuth();
+  const { user, login, logout } = useAuth2();
 
   return (
     <div className="App">
-      <Navbar setPage={setPage} isAuthenticated={isAuthenticated} logout={logout} />
+      <Navbar setPage={setPage} user={user} logout={logout} />
       <div className="container">
         {routes.map(({ name, component: Component, renderIf }) => {
           if (page === name || (renderIf && renderIf(page))) {
@@ -20,7 +20,7 @@ function App() {
                 setPage={setPage}
                 page={page}
                 login={login}
-                isAuthenticated={isAuthenticated}
+                user={user}
               />
             );
           }

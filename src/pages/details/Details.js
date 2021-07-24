@@ -9,7 +9,8 @@ import './Details.scss';
 
 const helpers = new Helpers();
 
-const Details = ({ page, setPage, isAuthenticated }) => {
+// eslint-disable-next-line react/prop-types
+const Details = ({ page, setPage, user }) => {
   const [inputComment, setInputComment] = useState('');
   const [storage] = useLocalStorage('user');
   const [comments, setComments] = useState([]);
@@ -111,7 +112,7 @@ const Details = ({ page, setPage, isAuthenticated }) => {
         </>
       )}
       <div className="comments-container">
-        {isAuthenticated() && (
+        {user && (
           <>
             <p className="comments-container__title">Write a comment:</p>
             <textarea
@@ -144,8 +145,6 @@ const Details = ({ page, setPage, isAuthenticated }) => {
 Details.propTypes = {
   page: PropTypes.string.isRequired,
   setPage: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.func.isRequired,
-
 };
 
 export default Details;
