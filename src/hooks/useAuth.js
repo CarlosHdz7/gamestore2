@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Helpers from '../api/helpers';
 import LocalStorage from '../api/localStorage';
 
-const useAuth2 = () => {
+const useAuth = () => {
   const helpers = new Helpers();
   const [user, setUser] = useState(null);
 
@@ -20,4 +20,4 @@ const useAuth2 = () => {
   return { user, login, logout };
 };
 
-export default useAuth2;
+export default useAuth;
