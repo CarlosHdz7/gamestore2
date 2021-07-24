@@ -20,6 +20,10 @@
   color: $white-color;
   display: flex;
   cursor: pointer;
+  background-color: $dark-purple-color;
+  font-weight: map-get($font-weights, bold);
+  font-size: 16px;
+  border: none;
 }
 
 .navbar-options {
