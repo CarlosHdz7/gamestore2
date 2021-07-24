@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../navbar';
 import Footer from '../footer';
 import routes from '../../api/routes';
-import useAuth2 from '../../hooks/useAuth2';
+import useAuth2 from '../../hooks/useAuth';
 
 function App() {
   const [page, setPage] = useState('home');

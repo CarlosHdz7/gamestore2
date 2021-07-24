@@ -4,7 +4,8 @@ import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
 import Comments from '../../components/comments';
 import useFetchGame from '../../hooks/useFetchGame';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import LocalStorage from '../../api/localStorage';
+// import useLocalStorage from '../../hooks/useLocalStorage';
 import './Details.scss';
 
 const helpers = new Helpers();
@@ -12,7 +13,7 @@ const helpers = new Helpers();
 // eslint-disable-next-line react/prop-types
 const Details = ({ page, setPage, user }) => {
   const [inputComment, setInputComment] = useState('');
-  const [storage] = useLocalStorage('user');
+  // const [storage] = useLocalStorage('user');
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(false);
   const id = page.split('/')[1];
@@ -33,9 +34,11 @@ const Details = ({ page, setPage, user }) => {
     fetchCommentsByGame();
   }, [fetchCommentsByGame]);
 
-  const postComment = () => {
+  const postComment = async () => {
     try {
       if (!inputComment) return;
+
+      const storage = await LocalStorage.read('user');
 
       const comment = {
         body: inputComment,
