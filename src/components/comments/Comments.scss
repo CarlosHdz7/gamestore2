@@ -12,6 +12,11 @@
   box-shadow: $shadow;
 }
 
+.comment__user{
+  font-weight: map-get($font-weights, bold);
+  margin-right: 5px;
+}
+
 .no-comments {
   color: $white-color;
 }
