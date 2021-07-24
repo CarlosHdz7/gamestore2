@@ -7,6 +7,17 @@
   grid-gap:10px;
 }
 
+.login-container__Welcome{
+  background-color: $purple-color;
+  color:$white-color;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
 .login-container__form{
   display: flex;
   width: 100%;
@@ -33,4 +44,9 @@
   padding: 10px;
   background-color: $secondary-color;
   font-weight: map-get($font-weights, bold);
+  cursor: pointer;
+}
+
+.form__button:hover{
+  background-color: $dark-orange-color;
 }

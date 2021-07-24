@@ -38,7 +38,7 @@ function Login({ setPage, user, login }) {
     <>
       <div className="login-container">
         <div className="login-container__Welcome">
-          <h1>Welcome</h1>
+          <h1>Hi! It’s nice to see you!</h1>
         </div>
         <div className="login-container__form">
           <h1 className="form__title">Login</h1>
@@ -54,7 +54,7 @@ function Login({ setPage, user, login }) {
             type="button"
             onClick={handleClick}
           >
-            Log
+            Log in
           </button>
         </div>
       </div>
