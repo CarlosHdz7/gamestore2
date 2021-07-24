@@ -26,14 +26,13 @@ const Navbar = ({ setPage, user, logout }) => {
   return (
     <div className="navbar">
       <div className="d-flex">
-        <div
-          role="button"
-          tabIndex="0"
+        <button
+          type="button"
           className="navbar-logo"
           onClick={redirectToHomePage}
         >
           GameStore
-        </div>
+        </button>
       </div>
       <div className="navbar-options">
         <a
