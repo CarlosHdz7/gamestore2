@@ -43,9 +43,9 @@ function Login({ setPage, user, login }) {
         <div className="login-container__form">
           <h1 className="form__title">Login</h1>
           <p>User</p>
-          <input type="text" placeholder="user" ref={inputUser} className="form__input" />
+          <input type="text" placeholder="Ex. john-doe" ref={inputUser} className="form__input" maxLength="30" />
           <p>Password</p>
-          <input type="password" placeholder="password" ref={inputPassword} className="form__input" />
+          <input type="password" placeholder="Ex. john123" ref={inputPassword} className="form__input" maxLength="30" />
           {error && (
             <p>Invalid user or email</p>
           )}

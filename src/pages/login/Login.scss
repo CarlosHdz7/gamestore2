@@ -45,6 +45,7 @@
   background-color: $secondary-color;
   font-weight: map-get($font-weights, bold);
   cursor: pointer;
+  border:none;
 }
 
 .form__button:hover{
