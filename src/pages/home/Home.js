@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Home.scss';
 
 const Home = ({ setPage }) => {
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     setPage('list');
-  }, []);
+  };
 
   return (
     <>

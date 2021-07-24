@@ -28,7 +28,7 @@ const Details = ({ page, setPage, user }) => {
     } catch (error) {
       setPage('home');
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     fetchCommentsByGame();
@@ -63,7 +63,7 @@ const Details = ({ page, setPage, user }) => {
 
   const handleBackClick = useCallback(() => {
     setPage('list');
-  }, []);
+  }, [id]);
 
   return (
     <>

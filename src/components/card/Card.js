@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import './Card.scss';
 
@@ -7,19 +9,23 @@ const Card = ({ setPage, game }) => {
     id, name, price, urlImage,
   } = game;
 
-  const redirectToDetails = () => {
+  const redirectToDetails = useCallback(() => {
     setPage(`details/${id}`);
-  };
-
-  const handleClick = () => {
-    redirectToDetails();
-  };
+  }, [id]);
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <div role="button" tabIndex="0" className="card" onClick={handleClick}>
+    <a
+      role="button"
+      tabIndex="0"
+      className="card"
+      onClick={redirectToDetails}
+    >
       <div className="card-img-container">
-        <img className="card-img" src={(urlImage) || '/images/controller.png'} alt="" />
+        <img
+          className="card-img"
+          src={urlImage || '/images/controller.png'}
+          alt=""
+        />
       </div>
       <div className="card-info">
         <p className="card-info__title">{name}</p>
@@ -36,7 +42,7 @@ const Card = ({ setPage, game }) => {
           Buy now
         </button>
       </div>
-    </div>
+    </a>
   );
 };
 

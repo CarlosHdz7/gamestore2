@@ -6,48 +6,65 @@ import '../../styles/Utilities.scss';
 import './Navbar.scss';
 
 // eslint-disable-next-line react/prop-types
-const Navbar = ({ setPage, user, logout }) => (
-  <div className="navbar">
-    <div className="d-flex">
-      <div
-        role="button"
-        tabIndex="0"
-        className="navbar-logo"
-        onClick={() => setPage('home')}
-      >
-        GameStore
+const Navbar = ({ setPage, user, logout }) => {
+  const redirectToHomePage = () => {
+    setPage('home');
+  };
+
+  const redirectToStore = () => {
+    setPage('list');
+  };
+
+  const redirectToLogin = () => {
+    setPage('login');
+  };
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  return (
+    <div className="navbar">
+      <div className="d-flex">
+        <div
+          role="button"
+          tabIndex="0"
+          className="navbar-logo"
+          onClick={redirectToHomePage}
+        >
+          GameStore
+        </div>
+      </div>
+      <div className="navbar-options">
+        <a
+          href="/#"
+          className="navbar-options__item"
+          onClick={redirectToStore}
+        >
+          Store
+        </a>
+        {user && (
+          <a
+            href="/#"
+            className="navbar-options__item"
+            onClick={handleLogout}
+          >
+            Logout
+          </a>
+        )}
+        {!user && (
+          <a
+            href="/#"
+            className="navbar-options__item"
+            onClick={redirectToLogin}
+          >
+            Login
+          </a>
+        )}
       </div>
     </div>
-    <div className="navbar-options">
-      <a
-        href="/#"
-        className="navbar-options__item"
-        onClick={() => setPage('list')}
-      >
-        Store
-      </a>
-
-      {user && (
-        <a
-          href="/#"
-          className="navbar-options__item"
-          onClick={() => logout()}
-        >
-          Logout
-        </a>
-      )}
-      {!user && (
-        <a
-          href="/#"
-          className="navbar-options__item"
-          onClick={() => setPage('login')}
-        >
-          Login
-        </a>
-      )}
-    </div>
-  </div>
-);
+  );
+};
 
 Navbar.propTypes = {
   setPage: PropTypes.func.isRequired,
