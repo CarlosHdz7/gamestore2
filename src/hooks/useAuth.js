@@ -1,27 +1,23 @@
-import { useCallback } from 'react';
-import useLocalStorage from './useLocalStorage';
+import { useState } from 'react';
+import Helpers from '../api/helpers';
+import LocalStorage from '../api/localStorage';
 
-const useAuth = () => {
-  const [storage, setStorage] = useLocalStorage('user');
+const useAuth2 = () => {
+  const helpers = new Helpers();
+  const [user, setUser] = useState(null);
 
-  const isAuthenticated = useCallback(
-    () => {
-      if (Object.keys(storage).length) {
-        return true;
-      }
-      return false;
-    },
-  );
-
-  const login = (data) => {
-    setStorage(data);
+  const login = async (credentials) => {
+    const userInfo = await helpers.postLogin(credentials);
+    LocalStorage.save('user', userInfo);
+    setUser(userInfo);
   };
 
-  const logout = () => {
-    setStorage({});
+  const logout = async () => {
+    LocalStorage.save('user', {});
+    setUser(false);
   };
 
-  return { isAuthenticated, login, logout };
+  return { user, login, logout };
 };
 
-export default useAuth;
+export default useAuth2;
