@@ -67,13 +67,13 @@ const Details = ({ page, setPage, user }) => {
 
   return (
     <>
-      <div className="button-container">
+      <div className='button-container'>
         <button
-          type="button"
-          className="button-container__button"
+          type='button'
+          className='button-container__button'
           onClick={handleBackClick}
         >
-          <i className="button-container__icon bi bi-arrow-left-circle-fill" />
+          <i className='button-container__icon bi bi-arrow-left-circle-fill' />
           Back
         </button>
       </div>
@@ -82,51 +82,51 @@ const Details = ({ page, setPage, user }) => {
 
       {!loading && (
         <>
-          <div className="details-container">
-            <div className="container-img-cover">
+          <div className='details-container'>
+            <div className='container-img-cover'>
               <img
-                className="container-img-cover__img"
+                className='container-img-cover__img'
                 src={game.urlImage ? game.urlImage : '/images/controller.png'}
-                alt=""
+                alt=''
               />
             </div>
-            <div className="info-container">
-              <p className="info-container__text info-container__text--name">
+            <div className='info-container'>
+              <p className='info-container__text info-container__text--name'>
                 {game.name}
               </p>
-              <p className="info-container__text">
+              <p className='info-container__text'>
                 Genre:
                 {game.genre}
               </p>
-              <p className="info-container__text">
+              <p className='info-container__text'>
                 Release:
                 {game.releaseYear}
               </p>
-              <p className="info-container__text">
+              <p className='info-container__text'>
                 Price:
                 {game.price}
                 $
               </p>
-              <button type="button" className="info-container__button">
+              <button type='button' className='info-container__button'>
                 Buy now
               </button>
             </div>
           </div>
         </>
       )}
-      <div className="comments-container">
+      <div className='comments-container'>
         {user && (
           <>
-            <p className="comments-container__title">Write a comment:</p>
+            <p className='comments-container__title'>Write a comment:</p>
             <textarea
-              className="comments-container__textarea"
+              className='comments-container__textarea'
               value={inputComment}
               onChange={handleInputChange}
             />
-            <div className="comments-container-button">
+            <div className='comments-container-button'>
               <button
-                type="button"
-                className="comment-button"
+                type='button'
+                className='comment-button'
                 onClick={postComment}
               >
                 Comment
@@ -135,7 +135,7 @@ const Details = ({ page, setPage, user }) => {
           </>
         )}
 
-        <p className="comments-container__title">Comments:</p>
+        <p className='comments-container__title'>Comments:</p>
 
         {loadingComments && <Loader />}
 

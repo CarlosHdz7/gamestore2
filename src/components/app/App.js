@@ -9,9 +9,9 @@ function App() {
   const { user, login, logout } = useAuth2();
 
   return (
-    <div className="App">
+    <div className='App'>
       <Navbar setPage={setPage} user={user} logout={logout} />
-      <div className="container">
+      <div className='container'>
         {routes.map(({ name, component: Component, renderIf }) => {
           if (page === name || (renderIf && renderIf(page))) {
             return (

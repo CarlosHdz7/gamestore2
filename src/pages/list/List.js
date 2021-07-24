@@ -27,18 +27,18 @@ const List = ({ setPage }) => {
 
   return (
     <>
-      <h1 className="title">List of games</h1>
+      <h1 className='title'>List of games</h1>
 
       {loading && <Loader />}
 
       {!loading && (
-        <div className="cards-container">
+        <div className='cards-container'>
           {currentGames.length > 0 ? (
             currentGames.map((game) => (
               <Card setPage={setPage} game={game} key={game.id} />
             ))
           ) : (
-            <p className="no-results">No results found :(</p>
+            <p className='no-results'>No results found :(</p>
           )}
         </div>
       )}

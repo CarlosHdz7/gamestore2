@@ -7,9 +7,9 @@ const Comments = ({ comments }) => {
     return (
       <>
         {comments.map(({ id, body, user: { username } }) => (
-          <div className="comment" key={id}>
+          <div className='comment' key={id}>
             <p>
-              <span className="comment__user">
+              <span className='comment__user'>
                 {username}
                 :
               </span>
@@ -21,7 +21,7 @@ const Comments = ({ comments }) => {
     );
   }
 
-  return <p className="no-comments">No comments yet</p>;
+  return <p className='no-comments'>No comments yet</p>;
 };
 
 Comments.defaultProps = {

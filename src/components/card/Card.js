@@ -15,28 +15,28 @@ const Card = ({ setPage, game }) => {
 
   return (
     <a
-      role="button"
-      tabIndex="0"
-      className="card"
+      role='button'
+      tabIndex='0'
+      className='card'
       onClick={redirectToDetails}
     >
-      <div className="card-img-container">
+      <div className='card-img-container'>
         <img
-          className="card-img"
+          className='card-img'
           src={urlImage || '/images/controller.png'}
-          alt=""
+          alt=''
         />
       </div>
-      <div className="card-info">
-        <p className="card-info__title">{name}</p>
-        <p className="card-info__subtitle">From</p>
-        <p className="card-info__price">
+      <div className='card-info'>
+        <p className='card-info__title'>{name}</p>
+        <p className='card-info__subtitle'>From</p>
+        <p className='card-info__price'>
           $
           {price}
         </p>
         <button
-          className="card-info__button"
-          type="button"
+          className='card-info__button'
+          type='button'
           onClick={(e) => e.stopPropagation()}
         >
           Buy now

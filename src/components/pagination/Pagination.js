@@ -45,19 +45,19 @@ const Pagination = ({
   calculatePages();
 
   return (
-    <nav className="pagination-container">
-      <ul className="pagination">
-        <li className="page-item">
-          <a onClick={(e) => handlePrev(e)} href="!#" className="page-link">
-            <i className="bi bi-caret-left-fill" />
+    <nav className='pagination-container'>
+      <ul className='pagination'>
+        <li className='page-item'>
+          <a onClick={(e) => handlePrev(e)} href='!#' className='page-link'>
+            <i className='bi bi-caret-left-fill' />
           </a>
         </li>
 
         {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
+          <li key={number} className='page-item'>
             <a
               onClick={(e) => handlePaginate(e, number)}
-              href="!#"
+              href='!#'
               className={
                 number === clickedId
                   ? 'page-link page-link-active'
@@ -69,9 +69,9 @@ const Pagination = ({
           </li>
         ))}
 
-        <li className="page-item">
-          <a onClick={(e) => handleNext(e)} href="!#" className="page-link">
-            <i className="bi bi-caret-right-fill" />
+        <li className='page-item'>
+          <a onClick={(e) => handleNext(e)} href='!#' className='page-link'>
+            <i className='bi bi-caret-right-fill' />
           </a>
         </li>
       </ul>

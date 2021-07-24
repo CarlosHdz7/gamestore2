@@ -24,28 +24,28 @@ const Navbar = ({ setPage, user, logout }) => {
   };
 
   return (
-    <div className="navbar">
-      <div className="d-flex">
+    <div className='navbar'>
+      <div className='d-flex'>
         <button
-          type="button"
-          className="navbar-logo"
+          type='button'
+          className='navbar-logo'
           onClick={redirectToHomePage}
         >
           GameStore
         </button>
       </div>
-      <div className="navbar-options">
+      <div className='navbar-options'>
         <a
-          href="/#"
-          className="navbar-options__item"
+          href='/#'
+          className='navbar-options__item'
           onClick={redirectToStore}
         >
           Store
         </a>
         {user && (
           <a
-            href="/#"
-            className="navbar-options__item"
+            href='/#'
+            className='navbar-options__item'
             onClick={handleLogout}
           >
             Logout
@@ -53,8 +53,8 @@ const Navbar = ({ setPage, user, logout }) => {
         )}
         {!user && (
           <a
-            href="/#"
-            className="navbar-options__item"
+            href='/#'
+            className='navbar-options__item'
             onClick={redirectToLogin}
           >
             Login
