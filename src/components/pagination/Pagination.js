@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import './Pagination.scss';
 
@@ -7,40 +7,42 @@ const Pagination = ({
 }) => {
   const [clickedId, setClickedId] = useState(1);
 
-  const pageNumbers = useRef([]);
+  const pageNumbers = [];
 
-  const calculatePages = () => {
-    for (let i = 1; i <= Math.ceil(totalPosts / gamesPerPage); i += 1) {
-      pageNumbers.current.push(i);
+  const calculateTotalPages = () => Math.ceil(totalPosts / gamesPerPage);
+  const totalPages = useMemo(() => calculateTotalPages(), [totalPosts, gamesPerPage]);
+
+  const calculatePages = useCallback(() => {
+    for (let i = 1; i <= totalPages; i += 1) {
+      pageNumbers.push(i);
     }
-  };
+  });
 
-  // eslint-disable-next-line no-unused-vars
-  const paginating = useMemo(() => calculatePages(), [totalPosts, gamesPerPage]);
-
-  const handlePaginate = (e, number) => {
+  const handlePaginate = useCallback((e, number) => {
     e.preventDefault();
     setClickedId(number);
     paginate(number);
-  };
+  });
 
-  const handlePrev = (e) => {
+  const handlePrev = useCallback((e) => {
     e.preventDefault();
     const prevPage = currentPage - 1;
     if (prevPage > 0) {
       paginate(prevPage);
       setClickedId(prevPage);
     }
-  };
+  });
 
-  const handleNext = (e) => {
+  const handleNext = useCallback((e) => {
     e.preventDefault();
     const nextPage = currentPage + 1;
-    if (nextPage <= pageNumbers.current.length) {
+    if (nextPage <= pageNumbers.length) {
       paginate(nextPage);
       setClickedId(nextPage);
     }
-  };
+  });
+
+  calculatePages();
 
   return (
     <nav className="pagination-container">
@@ -51,7 +53,7 @@ const Pagination = ({
           </a>
         </li>
 
-        {pageNumbers.current.map((number) => (
+        {pageNumbers.map((number) => (
           <li key={number} className="page-item">
             <a
               onClick={(e) => handlePaginate(e, number)}
