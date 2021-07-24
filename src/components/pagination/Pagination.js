@@ -12,17 +12,17 @@ const Pagination = ({
   const calculateTotalPages = () => Math.ceil(totalPosts / gamesPerPage);
   const totalPages = useMemo(() => calculateTotalPages(), [totalPosts, gamesPerPage]);
 
-  const calculatePages = useCallback(() => {
+  const calculatePages = () => {
     for (let i = 1; i <= totalPages; i += 1) {
       pageNumbers.push(i);
     }
-  });
+  };
 
   const handlePaginate = useCallback((e, number) => {
     e.preventDefault();
     setClickedId(number);
     paginate(number);
-  });
+  }, [gamesPerPage]);
 
   const handlePrev = useCallback((e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ const Pagination = ({
       paginate(prevPage);
       setClickedId(prevPage);
     }
-  });
+  }, [gamesPerPage]);
 
   const handleNext = useCallback((e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ const Pagination = ({
       paginate(nextPage);
       setClickedId(nextPage);
     }
-  });
+  }, [gamesPerPage]);
 
   calculatePages();
 
