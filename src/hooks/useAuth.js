@@ -1,9 +1,9 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import useLocalStorage from './useLocalStorage';
 
 const useAuth = () => {
   const [storage, setStorage] = useLocalStorage('user');
-  const [isLogged, setIsLogged] = useState(false);
+  const [, setIsLogged] = useState(false);
 
   const isAuthenticated = useCallback(
     () => {
@@ -23,10 +23,6 @@ const useAuth = () => {
     setStorage({});
     setIsLogged(false);
   };
-
-  useEffect(() => {
-    isAuthenticated();
-  }, [isLogged]);
 
   return { isAuthenticated, login, logout };
 };
