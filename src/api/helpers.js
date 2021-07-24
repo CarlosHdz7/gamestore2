@@ -1,7 +1,6 @@
 class Helpers {
   constructor() {
-    // this.url = 'https://week4-carloshdz.herokuapp.com';
-    this.url = 'https://trainee-gamerbox.herokuapp.com';
+    this.url = process.env.REACT_APP_API_URL;
   }
 
   static getConfig(method, body, headers = {}) {
