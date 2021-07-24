@@ -1,4 +1,6 @@
-import React, { useCallback, useRef, useEffect } from 'react';
+import React, {
+  useCallback, useRef, useEffect, useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import './Login.scss';
 import Helpers from '../../api/helpers';
@@ -7,6 +9,7 @@ function Login({ setPage, isAuthenticated, login }) {
   const helpers = new Helpers();
   const inputUser = useRef();
   const inputPassword = useRef();
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated()) {
@@ -20,9 +23,13 @@ function Login({ setPage, isAuthenticated, login }) {
       password: inputPassword.current.value,
     };
 
-    const userInfo = await helpers.postLogin(credentials);
-    login(userInfo);
-    setPage('list');
+    try {
+      const userInfo = await helpers.postLogin(credentials);
+      login(userInfo);
+      setPage('list');
+    } catch (e) {
+      setError(true);
+    }
   });
 
   const handleClick = () => {
@@ -40,7 +47,10 @@ function Login({ setPage, isAuthenticated, login }) {
           <p>User</p>
           <input type="text" placeholder="user" ref={inputUser} className="form__input" />
           <p>Password</p>
-          <input type="text" placeholder="password" ref={inputPassword} className="form__input" />
+          <input type="password" placeholder="password" ref={inputPassword} className="form__input" />
+          {error && (
+            <p>Invalid user or email</p>
+          )}
           <button
             className="form__button"
             type="button"
