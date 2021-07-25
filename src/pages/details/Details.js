@@ -4,10 +4,7 @@ import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
 import Comments from '../../components/comments';
 import useFetchGame from '../../hooks/useFetchGame';
-// import LocalStorage from '../../api/localStorage';
 import './Details.scss';
-
-const helpers = new Helpers();
 
 // eslint-disable-next-line react/prop-types
 const Details = ({ page, setPage, user }) => {
@@ -20,7 +17,7 @@ const Details = ({ page, setPage, user }) => {
   const fetchCommentsByGame = useCallback(async () => {
     try {
       setLoadingComments(true);
-      const data = await helpers.getCommentsByGame(id);
+      const data = await Helpers.getCommentsByGame(id);
       setComments(data);
       setLoadingComments(false);
     } catch (error) {
@@ -44,10 +41,9 @@ const Details = ({ page, setPage, user }) => {
         Authorization: `Bearer ${user.jwt}`,
       };
 
-      helpers.postComment(id, comment, headers).then(() => {
-        setInputComment('');
-        fetchCommentsByGame();
-      });
+      await Helpers.postComment(id, comment, headers);
+      setInputComment('');
+      fetchCommentsByGame();
     } catch (error) {
       setPage('list');
     }

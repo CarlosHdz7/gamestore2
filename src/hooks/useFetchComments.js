@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import Helpers from '../api/helpers';
 
 const useFetchComments = (id) => {
-  const helpers = new Helpers();
   const isMounted = useRef(true);
 
   const [state, setState] = useState({
@@ -13,7 +12,7 @@ const useFetchComments = (id) => {
   useEffect(() => {
     isMounted.current = true;
 
-    helpers.getCommentsByGame(id)
+    Helpers.getCommentsByGame(id)
       .then((comments) => {
         if (isMounted.current) {
           setState({

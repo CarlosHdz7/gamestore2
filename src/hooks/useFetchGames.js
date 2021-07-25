@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import Helpers from '../api/helpers';
 
 const useFetchGames = () => {
-  const helpers = new Helpers();
   const isMounted = useRef(true);
 
   const [state, setState] = useState({
@@ -13,7 +12,7 @@ const useFetchGames = () => {
   useEffect(() => {
     isMounted.current = true;
 
-    helpers.getGames()
+    Helpers.getGames()
       .then((game) => {
         if (isMounted.current) {
           setState({

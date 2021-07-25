@@ -1,8 +1,7 @@
-class Helpers {
-  constructor() {
-    this.url = process.env.REACT_APP_API_URL;
-  }
+import Singleton from './singleton';
 
+const singleton = new Singleton(process.env.REACT_APP_API_URL);
+class Helpers {
   static getConfig(method, body, headers = {}) {
     return {
       method,
@@ -19,11 +18,9 @@ class Helpers {
     };
   }
 
-  async getGames() {
-    const url = `${this.url}/games`;
-    const resp = await fetch(url);
-    const data = await resp.json();
-
+  static async getGames() {
+    const url = '/games';
+    const data = await singleton.getData(url);
     const games = data.map((game) => ({
       id: game.id,
       name: game.name,
@@ -35,11 +32,9 @@ class Helpers {
     return games;
   }
 
-  async getGameById(id) {
-    const url = `${this.url}/games/${id}`;
-    const resp = await fetch(url);
-    const data = await resp.json();
-
+  static async getGameById(id) {
+    const url = `/games/${id}`;
+    const data = await singleton.getData(url);
     const game = {
       id: data.id,
       name: data.name,
@@ -49,51 +44,30 @@ class Helpers {
       urlImage: data.cover_art?.url,
       comments: data.comments,
     };
-
     return game;
   }
 
-  async getCommentsByGame(id) {
-    const url = `${this.url}/games/${id}/comments?_limit=100&_sort=id&_order=asc`;
-    const resp = await fetch(url);
-    const data = await resp.json();
+  static async getCommentsByGame(id) {
+    const url = `/games/${id}/comments?_limit=100&_sort=id&_order=asc`;
+    const data = await singleton.getData(url);
     return data;
   }
 
-  async postComment(id, data, headers) {
-    const url = `${this.url}/games/${id}/comment`;
-    const response = await fetch(
-      url,
-      Helpers.getConfig('POST', JSON.stringify(data), headers),
-    );
-
-    if (!response.ok) {
-      throw new Error('Error');
-    }
-
-    return response.json();
+  static async postComment(id, data, headers) {
+    const url = `/games/${id}/comment`;
+    const response = await singleton.postData(url, data, headers);
+    return response;
   }
 
-  async postLogin(credentials) {
-    const url = `${this.url}/auth/local`;
-    const response = await fetch(
-      url,
-      Helpers.getConfig('POST', JSON.stringify(credentials)),
-    );
-
-    if (!response.ok) {
-      throw new Error('Error');
-    }
-
-    const data = await response.json();
-
+  static async postLogin(credentials) {
+    const url = '/auth/local';
+    const data = await singleton.postData(url, credentials);
     const user = {
       id: data.user.id,
       jwt: data.jwt,
       username: data.user.username,
       email: data.user.email,
     };
-
     return user;
   }
 }

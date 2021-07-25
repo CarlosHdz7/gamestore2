@@ -3,11 +3,10 @@ import Helpers from '../api/helpers';
 import LocalStorage from '../api/localStorage';
 
 const useAuth = () => {
-  const helpers = new Helpers();
   const [user, setUser] = useState(null);
 
   const login = async (credentials) => {
-    const userInfo = await helpers.postLogin(credentials);
+    const userInfo = await Helpers.postLogin(credentials);
     LocalStorage.save('user', userInfo);
     setUser(userInfo);
   };
