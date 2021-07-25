@@ -106,9 +106,7 @@ const Details = ({ page, setPage, user }) => {
           </div>
         </>
       ) : (
-        <p>
-          {serverError}
-        </p>
+        <p>{serverError}</p>
       )}
 
       <div className='comments-container'>

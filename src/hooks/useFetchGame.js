@@ -9,6 +9,7 @@ const useFetchGame = (id) => {
 
   useEffect(() => {
     isMounted.current = true;
+
     Helpers.getGameById(id).then((game) => {
       if (isMounted.current) {
         setApiData(game);

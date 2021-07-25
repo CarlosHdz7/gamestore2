@@ -3,23 +3,22 @@ import Helpers from '../api/helpers';
 
 const useFetchGames = () => {
   const isMounted = useRef(true);
-
-  const [state, setState] = useState({
-    data: [],
-    loading: true,
-  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [apiData, setApiData] = useState([]);
+  const [serverError, setServerError] = useState(null);
 
   useEffect(() => {
     isMounted.current = true;
 
     Helpers.getGames()
-      .then((game) => {
+      .then((games) => {
         if (isMounted.current) {
-          setState({
-            data: game,
-            loading: false,
-          });
+          setApiData(games);
+          setIsLoading(false);
         }
+      }).catch((error) => {
+        setServerError(error.message);
+        setIsLoading(false);
       });
 
     return () => {
@@ -27,7 +26,7 @@ const useFetchGames = () => {
     };
   }, []);
 
-  return state;
+  return { isLoading, apiData, serverError };
 };
 
 export default useFetchGames;

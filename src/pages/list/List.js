@@ -9,8 +9,7 @@ import './List.scss';
 const List = ({ setPage }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage] = useState(8);
-
-  const { data: games, loading } = useFetchGames();
+  const { apiData: games, isLoading, serverError } = useFetchGames();
 
   const indexOfLastGame = currentPage * gamesPerPage;
   const indexOfFirstGame = indexOfLastGame - gamesPerPage;
@@ -28,18 +27,22 @@ const List = ({ setPage }) => {
     <>
       <h1 className='title'>List of games</h1>
 
-      {loading && <Loader />}
+      {isLoading && <Loader />}
 
-      {!loading && (
-        <div className='cards-container'>
-          {currentGames.length > 0 ? (
-            currentGames.map((game) => (
-              <Card setPage={setPage} game={game} key={game.id} />
-            ))
-          ) : (
-            <p className='no-results'>No results found :(</p>
-          )}
-        </div>
+      { (!isLoading && !serverError) ? (
+        <>
+          <div className='cards-container'>
+            {currentGames.length > 0 ? (
+              currentGames.map((game) => (
+                <Card setPage={setPage} game={game} key={game.id} />
+              ))
+            ) : (
+              <p className='no-results'>No results found :(</p>
+            )}
+          </div>
+        </>
+      ) : (
+        <p>{ serverError }</p>
       )}
 
       <Pagination
