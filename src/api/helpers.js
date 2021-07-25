@@ -20,7 +20,7 @@ class Helpers {
 
   static async getGames() {
     const url = '/games';
-    const data = await singleton.getData(url);
+    const data = await singleton.getData(url, 'A error has ocurred while loading video games information.');
     const games = data.map((game) => ({
       id: game.id,
       name: game.name,
@@ -32,7 +32,7 @@ class Helpers {
 
   static async getGameById(id) {
     const url = `/games/${id}`;
-    const data = await singleton.getData(url);
+    const data = await singleton.getData(url, 'A error has ocurred while loading video game information.');
     const game = {
       id: data.id,
       name: data.name,
@@ -47,7 +47,7 @@ class Helpers {
 
   static async getCommentsByGame(id) {
     const url = `/games/${id}/comments?_limit=100&_sort=id&_order=asc`;
-    const data = await singleton.getData(url);
+    const data = await singleton.getData(url, 'A error has ocurred while loading comments.');
     return data;
   }
 

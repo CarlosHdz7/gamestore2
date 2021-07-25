@@ -12,7 +12,7 @@ const Details = ({ page, setPage, user }) => {
   const [comments, setComments] = useState([]);
   const [inputComment, setInputComment] = useState('');
   const [loadingComments, setLoadingComments] = useState(false);
-  const { data: game, loading } = useFetchGame(id);
+  const { apiData: game, isLoading, serverError } = useFetchGame(id);
 
   const fetchCommentsByGame = useCallback(async () => {
     try {
@@ -70,9 +70,9 @@ const Details = ({ page, setPage, user }) => {
         </button>
       </div>
 
-      {loading && <Loader />}
+      {isLoading && <Loader />}
 
-      {!loading && (
+      { (!isLoading && !serverError) ? (
         <>
           <div className='details-container'>
             <div className='container-img-cover'>
@@ -105,7 +105,12 @@ const Details = ({ page, setPage, user }) => {
             </div>
           </div>
         </>
+      ) : (
+        <p>
+          {serverError}
+        </p>
       )}
+
       <div className='comments-container'>
         {user && (
           <>
