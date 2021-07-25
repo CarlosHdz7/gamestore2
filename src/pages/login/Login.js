@@ -1,5 +1,5 @@
 import React, {
-  useCallback, useRef, useEffect, useState,
+  useRef, useEffect, useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import './Login.scss';
@@ -16,7 +16,7 @@ function Login({ setPage, user, login }) {
     }
   }, []);
 
-  const loginUser = useCallback(async () => {
+  const loginUser = async () => {
     const credentials = {
       identifier: inputUser.current.value,
       password: inputPassword.current.value,
@@ -28,10 +28,6 @@ function Login({ setPage, user, login }) {
     } catch (e) {
       setError(true);
     }
-  });
-
-  const handleClick = () => {
-    loginUser();
   };
 
   return (
@@ -59,7 +55,7 @@ function Login({ setPage, user, login }) {
             maxLength='30'
           />
           {error && <p>Invalid user or email</p>}
-          <button className='form__button' type='button' onClick={handleClick}>
+          <button className='form__button' type='button' onClick={loginUser}>
             Log in
           </button>
         </div>
