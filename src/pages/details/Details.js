@@ -4,17 +4,17 @@ import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
 import Comments from '../../components/comments';
 import useFetchGame from '../../hooks/useFetchGame';
-import LocalStorage from '../../api/localStorage';
+// import LocalStorage from '../../api/localStorage';
 import './Details.scss';
 
 const helpers = new Helpers();
 
 // eslint-disable-next-line react/prop-types
 const Details = ({ page, setPage, user }) => {
-  const [inputComment, setInputComment] = useState('');
-  const [comments, setComments] = useState([]);
-  const [loadingComments, setLoadingComments] = useState(false);
   const id = page.split('/')[1];
+  const [comments, setComments] = useState([]);
+  const [inputComment, setInputComment] = useState('');
+  const [loadingComments, setLoadingComments] = useState(false);
   const { data: game, loading } = useFetchGame(id);
 
   const fetchCommentsByGame = useCallback(async () => {
@@ -36,14 +36,12 @@ const Details = ({ page, setPage, user }) => {
     try {
       if (!inputComment) return;
 
-      const storage = await LocalStorage.read('user');
-
       const comment = {
         body: inputComment,
       };
 
       const headers = {
-        Authorization: `Bearer ${storage.jwt}`,
+        Authorization: `Bearer ${user.jwt}`,
       };
 
       helpers.postComment(id, comment, headers).then(() => {
