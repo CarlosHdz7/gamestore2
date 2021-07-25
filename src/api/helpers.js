@@ -24,8 +24,6 @@ class Helpers {
     const games = data.map((game) => ({
       id: game.id,
       name: game.name,
-      genre: game.genre?.name,
-      releaseYear: game.release_year,
       price: game.price,
       urlImage: game.cover_art?.url,
     }));
