@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import Navbar from '../navbar';
 import Footer from '../footer';
 import routes from '../../api/routes';
-import useAuth2 from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 function App() {
   const [page, setPage] = useState('home');
-  const { user, login, logout } = useAuth2();
+  const { user, login, logout } = useAuth();
 
   return (
     <div className='App'>
+
       <Navbar setPage={setPage} user={user} logout={logout} />
+
       <div className='container'>
         {routes.map(({ name, component: Component, renderIf }) => {
           if (page === name || (renderIf && renderIf(page))) {
@@ -27,6 +29,7 @@ function App() {
           return null;
         })}
       </div>
+
       <Footer />
     </div>
   );

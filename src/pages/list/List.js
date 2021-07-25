@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import Helpers from '../../api/helpers';
 import Pagination from '../../components/pagination';
 import Card from '../../components/card';
 import Loader from '../../components/loader';
