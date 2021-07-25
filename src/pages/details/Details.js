@@ -104,13 +104,8 @@ const Details = ({ page, setPage, user }) => {
               </button>
             </div>
           </div>
-        </>
-      ) : (
-        <p>{serverError}</p>
-      )}
 
-      <div className='comments-container'>
-        {user && (
+          {user && (
           <>
             <p className='comments-container__title'>Write a comment:</p>
             <textarea
@@ -128,8 +123,13 @@ const Details = ({ page, setPage, user }) => {
               </button>
             </div>
           </>
-        )}
+          )}
+        </>
+      ) : (
+        <p>{serverError}</p>
+      )}
 
+      <div className='comments-container'>
         <p className='comments-container__title'>Comments:</p>
 
         {loadingComments && <Loader />}
