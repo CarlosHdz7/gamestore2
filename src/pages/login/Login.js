@@ -23,7 +23,7 @@ function Login({ setPage, user, login }) {
     };
 
     try {
-      login(credentials);
+      await login(credentials);
       setPage('list');
     } catch (e) {
       setError(true);

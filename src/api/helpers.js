@@ -59,12 +59,12 @@ class Helpers {
 
   static async postLogin(credentials) {
     const url = '/auth/local';
-    const data = await singleton.postData(url, credentials);
+    const dataUser = await singleton.postData(url, credentials);
     const user = {
-      id: data.user.id,
-      jwt: data.jwt,
-      username: data.user.username,
-      email: data.user.email,
+      id: dataUser.user.id,
+      jwt: dataUser.jwt,
+      username: dataUser.user.username,
+      email: dataUser.user.email,
     };
     return user;
   }
