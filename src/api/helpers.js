@@ -2,22 +2,6 @@ import Singleton from './singleton';
 
 const singleton = new Singleton(process.env.REACT_APP_API_URL);
 class Helpers {
-  static getConfig(method, body, headers = {}) {
-    return {
-      method,
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-        ...headers,
-      },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      body,
-    };
-  }
-
   static async getGames() {
     const url = '/games';
     const data = await singleton.getData(url, 'A error has ocurred while loading video games information.');
