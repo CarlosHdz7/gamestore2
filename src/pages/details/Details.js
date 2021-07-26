@@ -12,7 +12,9 @@ const Details = ({ page, setPage, user }) => {
   const id = page.split('/')[1];
   const [inputComment, setInputComment] = useState('');
   const { apiData: game, isLoading, serverError } = useFetchGame(id);
-  const { apiData: comments, isLoading: isLoadingComments, getComments } = useFetchComments(id);
+  const {
+    apiData: comments, isLoading: isLoadingComments, serverError: serverErrorComments, getComments,
+  } = useFetchComments(id);
 
   const postComment = async () => {
     try {
@@ -123,7 +125,11 @@ const Details = ({ page, setPage, user }) => {
 
         {isLoadingComments && <Loader />}
 
-        {!isLoadingComments && <Comments comments={comments} />}
+        { (!isLoadingComments && !serverErrorComments) ? (
+          <Comments comments={comments} />
+        ) : (
+          <p>{serverErrorComments}</p>
+        )}
       </div>
     </>
   );
