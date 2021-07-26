@@ -18,7 +18,7 @@ const Details = ({ page, setPage, user }) => {
 
   const postComment = async () => {
     try {
-      if (!inputComment) return;
+      if (!inputComment && !inputComment.length > 100) return;
 
       const comment = {
         body: inputComment,
@@ -32,7 +32,7 @@ const Details = ({ page, setPage, user }) => {
       setInputComment('');
       getComments();
     } catch (error) {
-      setPage('list');
+      setPage('login');
     }
   };
 
