@@ -23,7 +23,7 @@ const Card = ({ setPage, game }) => {
       <div className='card-img-container'>
         <img
           className='card-img'
-          src={urlImage || '/images/controller.png'}
+          src={urlImage || '/images/not-found.png'}
           alt=''
         />
       </div>

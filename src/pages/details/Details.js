@@ -69,7 +69,7 @@ const Details = ({ page, setPage, user }) => {
             <div className='container-img-cover'>
               <img
                 className='container-img-cover__img'
-                src={game.urlImage ? game.urlImage : '/images/controller.png'}
+                src={game.urlImage ? game.urlImage : '/images/not-found.png'}
                 alt=''
               />
             </div>

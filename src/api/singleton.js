@@ -42,7 +42,7 @@ class Singleton {
     const response = await fetch(`${this.url}${endpoint}`,
       Singleton.getConfig('POST', JSON.stringify(data), headers));
 
-    if (response.statusCode && response.statusCode !== 200) {
+    if (!response.ok) {
       throw new Error(message);
     }
 
