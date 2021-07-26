@@ -21,6 +21,7 @@ const Navbar = ({ setPage, user, logout }) => {
 
   const handleLogout = () => {
     logout();
+    setPage('home');
   };
 
   return (
