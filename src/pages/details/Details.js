@@ -4,30 +4,15 @@ import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
 import Comments from '../../components/comments';
 import useFetchGame from '../../hooks/useFetchGame';
+import useFetchComments from '../../hooks/useFetchComments';
 import './Details.scss';
 
 // eslint-disable-next-line react/prop-types
 const Details = ({ page, setPage, user }) => {
   const id = page.split('/')[1];
-  const [comments, setComments] = useState([]);
   const [inputComment, setInputComment] = useState('');
-  const [loadingComments, setLoadingComments] = useState(false);
   const { apiData: game, isLoading, serverError } = useFetchGame(id);
-
-  const fetchCommentsByGame = useCallback(async () => {
-    try {
-      setLoadingComments(true);
-      const data = await Helpers.getCommentsByGame(id);
-      setComments(data);
-      setLoadingComments(false);
-    } catch (error) {
-      setPage('home');
-    }
-  }, [id]);
-
-  useEffect(() => {
-    fetchCommentsByGame();
-  }, [fetchCommentsByGame]);
+  const { apiData: comments, isLoading: isLoadingComments, getComments } = useFetchComments(id);
 
   const postComment = async () => {
     try {
@@ -43,19 +28,23 @@ const Details = ({ page, setPage, user }) => {
 
       await Helpers.postComment(id, comment, headers);
       setInputComment('');
-      fetchCommentsByGame();
+      getComments();
     } catch (error) {
       setPage('list');
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     setInputComment(e.target.value);
-  };
+  }, [id]);
 
   const handleBackClick = useCallback(() => {
     setPage('list');
   }, [id]);
+
+  useEffect(() => {
+    getComments();
+  }, []);
 
   return (
     <>
@@ -132,9 +121,9 @@ const Details = ({ page, setPage, user }) => {
       <div className='comments-container'>
         <p className='comments-container__title'>Comments:</p>
 
-        {loadingComments && <Loader />}
+        {isLoadingComments && <Loader />}
 
-        {!loadingComments && <Comments comments={comments} />}
+        {!isLoadingComments && <Comments comments={comments} />}
       </div>
     </>
   );

@@ -3,30 +3,34 @@ import Helpers from '../api/helpers';
 
 const useFetchComments = (id) => {
   const isMounted = useRef(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [apiData, setApiData] = useState([]);
+  const [serverError, setServerError] = useState(null);
 
-  const [state, setState] = useState({
-    data: [],
-    loading: true,
-  });
-
-  useEffect(() => {
+  const getComments = () => {
     isMounted.current = true;
-
     Helpers.getCommentsByGame(id)
       .then((comments) => {
         if (isMounted.current) {
-          setState({
-            data: comments,
-            loading: false,
-          });
+          setApiData(comments);
+          setIsLoading(false);
         }
+      }).catch((error) => {
+        setServerError(error.message);
+        setIsLoading(false);
       });
+  };
+
+  useEffect(() => {
+    getComments();
     return () => {
       isMounted.current = false;
     };
   }, [id]);
 
-  return state;
+  return {
+    isLoading, apiData, serverError, getComments,
+  };
 };
 
 export default useFetchComments;
