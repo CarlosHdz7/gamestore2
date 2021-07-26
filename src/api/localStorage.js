@@ -4,7 +4,7 @@ class LocalStorage {
   }
 
   static read(key) {
-    return JSON.parse(localStorage.getItem(key)) || {};
+    return JSON.parse(localStorage.getItem(key)) || false;
   }
 }
 

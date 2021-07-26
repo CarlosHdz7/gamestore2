@@ -11,8 +11,8 @@ const useAuth = () => {
     setUser(userInfo);
   };
 
-  const logout = async () => {
-    LocalStorage.save('user', {});
+  const logout = () => {
+    LocalStorage.save('user', false);
     setUser(false);
   };
 
