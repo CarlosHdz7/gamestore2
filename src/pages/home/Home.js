@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Home.scss';
 
-const Home = ({ setPage }) => {
+const Home = ({ setPage, user }) => {
   const handleClick = () => {
     setPage('list');
   };
@@ -11,7 +11,13 @@ const Home = ({ setPage }) => {
     <>
       <div className='home-container'>
         <div className='container-info'>
-          <h4 className='container-info__title'>Welcome to our store</h4>
+          <h4 className='container-info__title'>
+            Welcome
+            {' '}
+            { user.username ? user.username : ' ' }
+            {' '}
+            to our store
+          </h4>
           <p className='container-info__subtitle'>
             Where you can find a lot of new titles of your favorites consoles
             everyday at good price.

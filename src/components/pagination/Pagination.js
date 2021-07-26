@@ -1,4 +1,6 @@
-import React, { useCallback, useState, useMemo } from 'react';
+import React, {
+  useCallback, useState, useMemo,
+} from 'react';
 import PropTypes from 'prop-types';
 import './Pagination.scss';
 
@@ -24,23 +26,23 @@ const Pagination = ({
     paginate(number);
   }, [gamesPerPage]);
 
-  const handlePrev = useCallback((e) => {
+  const handlePrev = (e) => {
     e.preventDefault();
     const prevPage = currentPage - 1;
     if (prevPage > 0) {
       paginate(prevPage);
       setClickedId(prevPage);
     }
-  }, [gamesPerPage]);
+  };
 
-  const handleNext = useCallback((e) => {
+  const handleNext = (e) => {
     e.preventDefault();
     const nextPage = currentPage + 1;
     if (nextPage <= pageNumbers.length) {
       paginate(nextPage);
       setClickedId(nextPage);
     }
-  }, [gamesPerPage]);
+  };
 
   calculatePages();
 

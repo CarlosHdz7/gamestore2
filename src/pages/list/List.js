@@ -8,6 +8,7 @@ import './List.scss';
 
 const List = ({ setPage }) => {
   const [currentPage, setCurrentPage] = useState(1);
+
   const [gamesPerPage] = useState(8);
   const { apiData: games, isLoading, serverError } = useFetchGames();
 
