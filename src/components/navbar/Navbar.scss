@@ -41,3 +41,9 @@
     font-size: 14px;
   }
 }
+
+@media (max-width: $mobile) {
+  .navbar {
+    padding: 10px 10px;
+  }
+}

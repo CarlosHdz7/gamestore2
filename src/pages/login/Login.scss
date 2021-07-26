@@ -51,3 +51,10 @@
 .form__button:hover{
   background-color: $dark-orange-color;
 }
+
+@media (max-width: $tablet) {
+  .login-container{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+}
