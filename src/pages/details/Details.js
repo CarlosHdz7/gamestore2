@@ -115,6 +115,12 @@ const Details = ({ page, setPage, user }) => {
             </div>
           </>
           )}
+
+          {!user && (
+          <>
+            <p>You must be logged to post comment:</p>
+          </>
+          )}
         </>
       ) : (
         <p>{serverError}</p>

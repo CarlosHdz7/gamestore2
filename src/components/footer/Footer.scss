@@ -1,12 +1,11 @@
 @import '../../styles/Settings.scss';
+@import '../../styles/Common.scss';
 
 footer {
-  align-items: center;
+  @include center-all;
   background-color: $dark-purple-color;
   bottom: 0;
-  color: $white-color;
-  display: flex;
-  justify-content: center;
+  color: $white-color;  
   height: 50px;
   left: 0;
   position: fixed;

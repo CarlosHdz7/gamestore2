@@ -1,4 +1,5 @@
 @import '../../styles/Settings.scss';
+@import '../../styles/Common.scss';
 
 .login-container{
   display: grid;
@@ -8,13 +9,10 @@
 }
 
 .login-container__Welcome{
+  @include center-all;
   background-color: $purple-color;
   color:$white-color;
   padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: 30px;
 }
 
