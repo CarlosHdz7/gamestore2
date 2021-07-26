@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+
 import './Card.scss';
 
 const Card = ({ setPage, game }) => {

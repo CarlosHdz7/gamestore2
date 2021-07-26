@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import Helpers from '../../api/helpers';
 import Loader from '../../components/loader';
 import Comments from '../../components/comments';
 import useFetchGame from '../../hooks/useFetchGame';
 import useFetchComments from '../../hooks/useFetchComments';
+
 import './Details.scss';
 
 // eslint-disable-next-line react/prop-types

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
 import Pagination from '../../components/pagination';
 import Card from '../../components/card';
 import Loader from '../../components/loader';
 import useFetchGames from '../../hooks/useFetchGames';
+
 import './List.scss';
 
 const List = ({ setPage }) => {
