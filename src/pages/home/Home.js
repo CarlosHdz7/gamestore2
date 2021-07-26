@@ -14,7 +14,7 @@ const Home = ({ setPage, user }) => {
           <h4 className='container-info__title'>
             Welcome
             {' '}
-            { user.username ? user.username : ' ' }
+            { user && user.username }
             {' '}
             to our store
           </h4>
