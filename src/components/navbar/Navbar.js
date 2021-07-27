@@ -65,6 +65,8 @@ const Navbar = ({ setPage, user, logout }) => {
           className='navbar-options__item'
           onClick={redirectToStore}
         >
+          <i className='bi bi-cart-fill' />
+          {' '}
           Store
         </a>
         {user && (
@@ -82,6 +84,8 @@ const Navbar = ({ setPage, user, logout }) => {
                 className='navbar-options__item logout-button'
                 onClick={handleLogout}
               >
+                <i className='bi bi-door-open-fill' />
+                {' '}
                 Logout
               </a>
             </div>

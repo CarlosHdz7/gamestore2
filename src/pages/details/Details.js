@@ -89,8 +89,8 @@ const Details = ({ page, setPage, user }) => {
               </p>
               <p className='info-container__text'>
                 Price:
-                {game.price}
                 $
+                {game.price}
               </p>
               <button type='button' className='info-container__button'>
                 Buy now

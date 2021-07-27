@@ -38,7 +38,11 @@ function Login({ setPage, user, login }) {
           <h1>Hi! It’s nice to see you!</h1>
         </div>
         <div className='login-container__form'>
-          <h1 className='form__title'>Login</h1>
+          <h1 className='form__title'>
+            <i className='bi bi-person-circle' />
+            {' '}
+            Login
+          </h1>
           <p>User</p>
           <input
             type='text'

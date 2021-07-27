@@ -18,6 +18,8 @@ const Home = ({ setPage, user }) => {
             { user && user.username }
             {' '}
             to our store
+            {' '}
+            <i className='bi bi-shop' />
           </h4>
           <p className='container-info__subtitle'>
             Where you can find a lot of new titles of your favorites consoles
@@ -30,6 +32,8 @@ const Home = ({ setPage, user }) => {
               onClick={handleClick}
             >
               Go to store
+              {' '}
+              <i className='bi bi-cart-fill' />
             </button>
           </div>
         </div>

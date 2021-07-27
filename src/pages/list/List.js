@@ -28,7 +28,11 @@ const List = ({ setPage }) => {
 
   return (
     <>
-      <h1 className='title'>List of games</h1>
+      <h1 className='title'>
+        <i className='bi bi-joystick' />
+        {' '}
+        List of games
+      </h1>
 
       {isLoading && <Loader />}
 

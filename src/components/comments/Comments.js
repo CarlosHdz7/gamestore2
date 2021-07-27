@@ -11,6 +11,8 @@ const Comments = ({ comments }) => {
           <div className='comment' key={id}>
             <p>
               <span className='comment__user'>
+                <i className='bi bi-person-circle' />
+                {' '}
                 {username}
                 :
               </span>
