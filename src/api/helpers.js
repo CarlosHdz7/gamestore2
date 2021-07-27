@@ -25,6 +25,7 @@ class Helpers {
       price: data.price,
       urlImage: data.cover_art?.url,
       comments: data.comments,
+      publishers: data.publishers,
     };
     return game;
   }

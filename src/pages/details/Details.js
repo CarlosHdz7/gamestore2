@@ -80,17 +80,23 @@ const Details = ({ page, setPage, user }) => {
                 {game.name}
               </p>
               <p className='info-container__text'>
-                Genre:
+                <span className='bold'> Genre: </span>
                 {game.genre}
               </p>
               <p className='info-container__text'>
-                Release:
+                <span className='bold'> Release: </span>
                 {game.releaseYear}
               </p>
               <p className='info-container__text'>
-                Price:
+                <span className='bold'>Price: </span>
                 $
                 {game.price}
+              </p>
+              <p className='info-container__text'>
+                <span className='bold'>Publishers: </span>
+                {game.publishers?.map(({ idPublisher, name }) => (
+                  <span key={idPublisher}>{name}</span>
+                ))}
               </p>
               <button type='button' className='info-container__button'>
                 Buy now

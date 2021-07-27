@@ -22,6 +22,10 @@ body {
   box-sizing: border-box;
 }
 
+.bold{
+  font-weight: map-get($font-weights, bold);
+}
+
 .title {
   color: $white-color;
 }

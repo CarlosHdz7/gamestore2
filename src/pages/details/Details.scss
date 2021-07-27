@@ -1,6 +1,10 @@
 @import '../../styles/Settings.scss';
 @import '../../styles/Common.scss';
 
+*{
+  // border:1px solid red;
+}
+
 .details-container {
   display: grid;
   grid-gap: 10px;
@@ -22,12 +26,14 @@
 
 .info-container__text {
   color: $white-color;
+  margin: 10px 5px;
 }
 
 .info-container__text--name {
   font-size: 30px;
   font-weight: map-get($font-weights, bold);
   margin-top: 0px;
+  margin-bottom: 5px;
 }
 
 .info-container__button{
@@ -36,6 +42,7 @@
   padding: 10px;
   width: 100px;
   font-weight: 700;
+  margin-top: 10px;
 }
 .comments-container{
   margin-top: 20px;
