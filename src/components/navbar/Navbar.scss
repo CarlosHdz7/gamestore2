@@ -24,16 +24,52 @@
   font-weight: map-get($font-weights, bold);
   font-size: 16px;
   border: none;
+  font-family: $font-family;
 }
 
 .navbar-options {
   display: flex;
 }
 
+.d-none{
+  display: none;
+}
+
 .navbar-options__item {
   padding: 10px;
   text-decoration: none;
   color: $white-color;
+  font-weight: map-get($font-weights, bold);
+  font-size: 16px;
+  font-family: $font-family;
+}
+
+.navbar-options__item--button{
+  @extend .navbar-options__item;
+  background-color: $dark-purple-color;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.userSession{
+  position: relative;
+}
+.logout-button-container{
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  background-color: $purple-color;
+  border: 1px solid black;
+  width: 100%;
+  cursor: pointer;
+}
+
+.logout-button{
+  padding:10px;
+  display: inline-block;
+  cursor: pointer;
+  width:100%;
 }
 
 @media (max-width: $tablet) {
