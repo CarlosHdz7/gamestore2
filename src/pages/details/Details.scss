@@ -75,6 +75,13 @@
   box-shadow: $shadow;
 }
 
+.login-message{
+  padding: 5px;
+  background-color: $dark-orange-color;
+  font-weight: map-get($font-weights, bold);
+  text-align: center;
+}
+
 .container-img-cover__img{
   @include  w-h-100;
 }

@@ -120,7 +120,7 @@ const Details = ({ page, setPage, user }) => {
 
           {!user && (
           <>
-            <p>You must be logged to post comment:</p>
+            <p className='login-message'>You must be logged to post comment</p>
           </>
           )}
         </>
