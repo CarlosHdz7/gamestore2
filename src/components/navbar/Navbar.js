@@ -77,6 +77,8 @@ const Navbar = ({ setPage, user, logout }) => {
               onClick={handleShowLogout}
             >
               {user.username}
+              {' '}
+              {(!prevState) ? <i className='bi bi-caret-down-fill' /> : <i className='bi bi-caret-up-fill' />}
             </button>
             <div className='logout-button-container d-none' ref={containerRef}>
               <a
