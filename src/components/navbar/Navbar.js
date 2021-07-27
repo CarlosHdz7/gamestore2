@@ -38,7 +38,7 @@ const Navbar = ({ setPage, user, logout }) => {
     } else {
       containerRef.current?.classList.remove('d-none');
     }
-  });
+  }, [containerState]);
 
   const handleShowLogout = () => {
     if (!containerState) {

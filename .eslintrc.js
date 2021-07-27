@@ -16,7 +16,7 @@ module.exports = {
     semi: ['error', 'always'],
     quotes: ['error', 'single'],
     'jsx-quotes': ['error', 'prefer-single'],
-    'no-console': 'warn',
+    'no-console': 'error',
     'react/prop-types': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'import/no-extraneous-dependencies': [
