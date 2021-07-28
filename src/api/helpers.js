@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Singleton from './singleton';
 
 const singleton = new Singleton(process.env.REACT_APP_API_URL);
@@ -33,7 +34,7 @@ class Helpers {
   static async getCommentsByGame(id) {
     const url = `/games/${id}/comments?_limit=100&_sort=id&_order=asc`;
     const data = await singleton.getData(url, 'A error has ocurred while loading comments.');
-    return data;
+    return _.orderBy(data, ['id'], ['desc']);
   }
 
   static async postComment(id, data, headers) {
