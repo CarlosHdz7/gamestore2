@@ -41,7 +41,7 @@ function Login({ setPage, user, login }) {
           <h1 className='form__title'>
             <i className='bi bi-person-circle' />
             {' '}
-            Login
+            Welcome
           </h1>
           <p>User</p>
           <input
@@ -59,7 +59,7 @@ function Login({ setPage, user, login }) {
             className='form__input'
             maxLength='30'
           />
-          {error && <p>Invalid user or email</p>}
+          {error && <p className='error-message'>Invalid user or email</p>}
           <button className='form__button' type='button' onClick={loginUser}>
             Log in
           </button>

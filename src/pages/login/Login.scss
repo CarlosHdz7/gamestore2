@@ -29,6 +29,7 @@
 .form__title{
   color:$white-color;
   font-size: 25px;
+  margin-bottom: 0px;
 }
 
 .form__input{
@@ -44,10 +45,18 @@
   font-weight: map-get($font-weights, bold);
   cursor: pointer;
   border:none;
+  font-size: 16px;
 }
 
 .form__button:hover{
   background-color: $dark-orange-color;
+}
+
+.error-message{
+  padding: 5px;
+  color: $white-color;
+  background-color: $red-color;
+  text-align: center;
 }
 
 @media (max-width: $tablet) {
