@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-
-import usePrevious from '../../hooks/usePrevious';
 
 import '../../styles/Common.scss';
 import '../../styles/Utilities.scss';
@@ -11,7 +9,6 @@ import './Navbar.scss';
 // eslint-disable-next-line react/prop-types
 const Navbar = ({ setPage, user, logout }) => {
   const [containerState, setContainerState] = useState(true);
-  const prevState = usePrevious(containerState);
   const containerRef = useRef();
 
   const redirectToHomePage = () => {
@@ -28,24 +25,13 @@ const Navbar = ({ setPage, user, logout }) => {
 
   const handleLogout = () => {
     logout();
+    setContainerState(!containerState);
     setPage('home');
-    setContainerState(false);
   };
 
-  useEffect(() => {
-    if (!prevState) {
-      containerRef.current?.classList.add('d-none');
-    } else {
-      containerRef.current?.classList.remove('d-none');
-    }
-  }, [containerState]);
-
   const handleShowLogout = () => {
-    if (!containerState) {
-      setContainerState(true);
-    } else {
-      setContainerState(false);
-    }
+    setContainerState(!containerState);
+    containerRef.current?.classList.toggle('d-none');
   };
 
   return (
@@ -78,7 +64,7 @@ const Navbar = ({ setPage, user, logout }) => {
             >
               {user.username}
               {' '}
-              {(!prevState) ? <i className='bi bi-caret-down-fill' /> : <i className='bi bi-caret-up-fill' />}
+              {(containerState) ? <i className='bi bi-caret-down-fill' /> : <i className='bi bi-caret-up-fill' />}
             </button>
             <div className='logout-button-container d-none' ref={containerRef}>
               <a
