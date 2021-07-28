@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Pagination from '../../components/pagination';
 import Card from '../../components/card';
 import Loader from '../../components/loader';
 import useFetchGames from '../../hooks/useFetchGames';
+import usePrevious from '../../hooks/usePrevious';
 
 import './List.scss';
 
 const List = ({ setPage }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const previousPage = usePrevious(currentPage);
 
   const [gamesPerPage] = useState(8);
   const { apiData: games, isLoading, serverError } = useFetchGames();
@@ -18,11 +20,16 @@ const List = ({ setPage }) => {
   const indexOfFirstGame = indexOfLastGame - gamesPerPage;
   const currentGames = games.slice(indexOfFirstGame, indexOfLastGame);
 
+  useEffect(() => {
+    if (previousPage !== currentPage) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  });
+
   const paginate = (pageNumber) => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
     setCurrentPage(pageNumber);
   };
 

@@ -94,7 +94,7 @@ const Details = ({ page, setPage, user }) => {
               </p>
               <p className='info-container__text'>
                 <span className='bold'>Publishers: </span>
-                {game.publishers?.map(({ idPublisher, name }) => (
+                {game.publishers?.map(({ id: idPublisher, name }) => (
                   <span key={idPublisher}>{name}</span>
                 ))}
               </p>
