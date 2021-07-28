@@ -20,7 +20,7 @@ const Details = ({ page, setPage, user }) => {
 
   const postComment = async () => {
     try {
-      if (!inputComment && !inputComment.length > 100) return;
+      if (!inputComment || inputComment.length > 100) return;
 
       const comment = {
         body: inputComment,

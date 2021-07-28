@@ -32,7 +32,7 @@ class Helpers {
   }
 
   static async getCommentsByGame(id) {
-    const url = `/games/${id}/comments?_limit=100&_sort=id&_order=asc`;
+    const url = `/games/${id}/comments?_limit=200&_sort=id&_order=asc`;
     const data = await singleton.getData(url, 'A error has ocurred while loading comments.');
     return _.orderBy(data, ['id'], ['desc']);
   }
